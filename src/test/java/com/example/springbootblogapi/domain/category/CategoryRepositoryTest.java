@@ -52,7 +52,10 @@ class CategoryRepositoryTest {
     }
 
     @Test
+    @DisplayName("existsById - 카테고리 존재 여부")
     void existsById() {
+        assertThat(categoryRepository.existsById(1L)).isTrue();
+        assertThat(categoryRepository.existsById(7L)).isFalse();
     }
 
     @Test
