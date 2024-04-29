@@ -59,6 +59,21 @@ class CategoryRepositoryTest {
     }
 
     @Test
+    @DisplayName("findById - 카테고리 조회")
     void findById() {
+        Optional<Category> result = categoryRepository.findById(1L);
+        assertThat(result.isPresent()).isTrue();
+
+        if (result.isPresent()) {
+            Category foundCategory = result.get();
+            assertThat(foundCategory.getId()).isEqualTo(1L);
+        }
+    }
+
+    @Test
+    @DisplayName("findById - 카테고리 조회 - isEmpty")
+    void findById_isEmpty() {
+        Optional<Category> result = categoryRepository.findById(6L);
+        assertThat(result.isEmpty()).isTrue();
     }
 }
