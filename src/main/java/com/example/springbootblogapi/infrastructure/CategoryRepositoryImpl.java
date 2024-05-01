@@ -17,7 +17,13 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     @Transactional
     @Override
     public Long create(Category category) {
+        category.setSort(maxSort() + 1);
         return categoryRepository.save(category).getId();
+    }
+
+    private Integer maxSort() {
+        Integer maxSort = categoryRepository.getMaxSort();
+        return maxSort == null ? 0 : maxSort;
     }
 
     @Override
