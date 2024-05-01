@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 @Component
 @RequiredArgsConstructor
 public class CategoryUpdater {
@@ -31,10 +29,9 @@ public class CategoryUpdater {
             throw new CategoryNotFoundException("categoryIds", data.getIds());
         }
 
-        AtomicInteger sort = new AtomicInteger(1);
-
-        data.getIds().forEach(categoryId -> {
-            categoryRepository.updateSortById(sort.getAndIncrement(), categoryId);
-        });
+        int sort = 1;
+        for (Long categoryId : data.getIds()) {
+            categoryRepository.updateSortById(sort++, categoryId);
+        };
     }
 }
