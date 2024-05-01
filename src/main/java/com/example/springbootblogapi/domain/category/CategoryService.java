@@ -18,4 +18,8 @@ public class CategoryService {
     public Long create(CategoryData data) {
         return categoryCreator.create(data);
     }
+
+    public CategoryDto getBy(Long categoryId) {
+        return categoryQuery.getBy(categoryId);
+    }
 }

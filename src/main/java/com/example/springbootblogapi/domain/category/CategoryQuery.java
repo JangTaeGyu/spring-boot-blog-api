@@ -14,7 +14,7 @@ public class CategoryQuery {
         return categoryRepository.findAllSortedAscOrder();
     }
 
-    public CategoryDto getCategory(Long categoryId) {
+    public CategoryDto getBy(Long categoryId) {
         return categoryRepository.findById(categoryId)
                 .map(Category::toDto)
                 .orElseThrow(() -> new CategoryNotFoundException("categoryId", categoryId));
