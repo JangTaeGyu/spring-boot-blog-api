@@ -11,4 +11,8 @@ public interface CategoryRepository {
     boolean existsById(Long categoryId);
 
     Optional<Category> findById(Long categoryId);
+
+    Long getCountByIds(List<Long> categoryIds);
+
+    void updateSortById(Integer sort, Long categoryId);
 }

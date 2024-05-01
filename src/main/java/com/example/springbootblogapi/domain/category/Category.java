@@ -47,4 +47,8 @@ public class Category extends BaseEntity {
         this.name = data.getName();
         this.description = data.getDescription();
     }
+
+    public void changeShow(boolean show) {
+        this.show = show;
+    }
 }

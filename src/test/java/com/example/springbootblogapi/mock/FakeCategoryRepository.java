@@ -44,4 +44,23 @@ public class FakeCategoryRepository implements CategoryRepository {
     public Optional<Category> findById(Long categoryId) {
         return data.stream().filter(category -> category.getId().equals(categoryId)).findFirst();
     }
+
+    @Override
+    public Long getCountByIds(List<Long> categoryIds) {
+        AtomicLong count = new AtomicLong(0);
+
+        categoryIds.forEach(categoryId -> {
+            Optional<Category> result = data.stream().filter(category -> category.getId().equals(categoryId)).findFirst();
+            if (result.isPresent()) {
+                count.getAndIncrement();
+            }
+        });
+
+        return count.get();
+    }
+
+    @Override
+    public void updateSortById(Integer sort, Long categoryId) {
+
+    }
 }

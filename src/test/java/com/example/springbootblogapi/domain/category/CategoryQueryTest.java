@@ -26,7 +26,7 @@ class CategoryQueryTest {
     }
 
     @Test
-    @DisplayName("getBy - categoryId 로 카테고리 조회 오류 - CategoryNotFoundException")
+    @DisplayName("getBy - 카테고리 조회 오류 - CategoryNotFoundException")
     void getBy_CategoryNotFoundException() {
         assertThatThrownBy(() -> {
             categoryQuery.getBy(6L);
@@ -34,7 +34,7 @@ class CategoryQueryTest {
     }
 
     @Test
-    @DisplayName("getBy - categoryId 로 카테고리 조회")
+    @DisplayName("getBy - 카테고리 조회")
     void getBy() {
         Long categoryId = 3L;
         CategoryDto category = categoryQuery.getBy(categoryId);

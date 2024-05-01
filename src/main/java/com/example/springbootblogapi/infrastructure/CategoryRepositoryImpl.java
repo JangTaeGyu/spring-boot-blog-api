@@ -58,4 +58,25 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     public Optional<Category> findById(Long categoryId) {
         return categoryRepository.findById(categoryId);
     }
+
+    @Override
+    public Long getCountByIds(List<Long> categoryIds) {
+        return query.select(category.count())
+                .from(category)
+                .where(
+                        category.id.in(categoryIds)
+                )
+                .fetchOne();
+    }
+
+    @Transactional
+    @Override
+    public void updateSortById(Integer sort, Long categoryId) {
+        query.update(category)
+                .set(category.sort, sort)
+                .where(
+                        category.id.eq(categoryId)
+                )
+                .execute();
+    }
 }

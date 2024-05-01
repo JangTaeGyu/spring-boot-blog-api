@@ -15,7 +15,7 @@ class CategoryCreatorTest {
     }
 
     @Test
-    @DisplayName("create - CategoryData 로 카테고리 생성")
+    @DisplayName("create - 카테고리 생성")
     void create() {
         CategoryData data = new CategoryData("Category 06", "Category Description 06");
         Long createdCategoryId = categoryCreator.create(data);

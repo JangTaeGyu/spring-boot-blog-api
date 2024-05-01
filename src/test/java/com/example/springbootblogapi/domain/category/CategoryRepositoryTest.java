@@ -85,4 +85,31 @@ class CategoryRepositoryTest {
         Optional<Category> result = categoryRepository.findById(6L);
         assertThat(result.isEmpty()).isTrue();
     }
+
+    @Test
+    @DisplayName("getCountByIds - 카테고리 카운트")
+    void getCountByIds() {
+        List<Long> categoryIds = List.of(1L, 2L, 3L);
+        Long count = categoryRepository.getCountByIds(categoryIds);
+
+        assertThat(count).isEqualTo(categoryIds.size());
+    }
+
+    @Test
+    @DisplayName("getCountByIds - 카테고리 카운트 nonExistent")
+    void getCountByIds_nonExistent() {
+        List<Long> categoryIds = List.of(1L, 2L, 3L, 6L, 7L);
+        Long count = categoryRepository.getCountByIds(categoryIds);
+
+        assertThat(count).isEqualTo(categoryIds.size() - 2);
+    }
+
+    @Test
+    @DisplayName("updateSortById - 카테고리 정렬 수정")
+    void updateSortById() {
+        categoryRepository.updateSortById(4, 1L);
+        Category category = categoryRepository.findById(1L).orElseThrow(RuntimeException::new);
+
+        assertThat(category.getSort()).isEqualTo(4);
+    }
 }
