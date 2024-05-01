@@ -15,10 +15,10 @@ class CategoryCreatorTest {
     }
 
     @Test
-    @DisplayName("create - 카테고리 생성")
-    void create() {
+    @DisplayName("createCategory - 카테고리 생성")
+    void createCategory() {
         CategoryData data = new CategoryData("Category 06", "Category Description 06");
-        Long createdCategoryId = categoryCreator.create(data);
+        Long createdCategoryId = categoryCreator.createCategory(data);
 
         assertThat(createdCategoryId).isPositive();
     }

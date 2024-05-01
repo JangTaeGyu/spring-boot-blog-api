@@ -15,4 +15,6 @@ public interface CategoryRepository {
     Long getCountByIds(List<Long> categoryIds);
 
     void updateSortById(Integer sort, Long categoryId);
+
+    void delete(Category category);
 }

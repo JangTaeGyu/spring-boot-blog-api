@@ -15,4 +15,6 @@ public interface JpaCategoryRepository extends Repository<Category, Long> {
     Category save(Category category);
 
     Optional<Category> findById(Long id);
+
+    void delete(Category category);
 }

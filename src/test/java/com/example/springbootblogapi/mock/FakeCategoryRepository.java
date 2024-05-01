@@ -63,4 +63,9 @@ public class FakeCategoryRepository implements CategoryRepository {
     public void updateSortById(Integer sort, Long categoryId) {
 
     }
+
+    @Override
+    public void delete(Category category) {
+
+    }
 }

@@ -10,20 +10,20 @@ public class CategoryUpdater {
     private final CategoryRepository categoryRepository;
 
     @Transactional
-    public void update(Long categoryId, CategoryData data) {
+    public void updateCategoryById(Long categoryId, CategoryData data) {
         categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new CategoryNotFoundException("categoryId", categoryId))
                 .update(data);
     }
 
     @Transactional
-    public void updateShow(Long categoryId, boolean show) {
+    public void setCategoryVisibility(Long categoryId, boolean show) {
         categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new CategoryNotFoundException("categoryId", categoryId))
                 .changeShow(show);
     }
 
-    public void sort(CategorySortData data) {
+    public void sortCategories(CategorySortData data) {
         Long count = categoryRepository.getCountByIds(data.getIds());
         if (count != data.getIds().size()) {
             throw new CategoryNotFoundException("categoryIds", data.getIds());

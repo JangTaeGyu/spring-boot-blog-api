@@ -18,26 +18,26 @@ class CategoryQueryTest {
     }
 
     @Test
-    @DisplayName("getAllSorted - 정렬된 카테고리 목록 조회")
-    void getAllSorted() {
-        List<CategoryDto> categories = categoryQuery.getAllSorted();
+    @DisplayName("getAllSortedCategories - 정렬된 카테고리 목록 조회")
+    void getAllSortedCategories() {
+        List<CategoryDto> categories = categoryQuery.getAllSortedCategories();
 
         assertThat(categories.size()).isEqualTo(5L);
     }
 
     @Test
-    @DisplayName("getBy - 카테고리 조회 오류 - CategoryNotFoundException")
-    void getBy_CategoryNotFoundException() {
+    @DisplayName("getCategoryById - 카테고리 조회 오류 - CategoryNotFoundException")
+    void getCategoryById_CategoryNotFoundException() {
         assertThatThrownBy(() -> {
-            categoryQuery.getBy(6L);
+            categoryQuery.getCategoryById(6L);
         }).isInstanceOf(CategoryNotFoundException.class);
     }
 
     @Test
-    @DisplayName("getBy - 카테고리 조회")
-    void getBy() {
+    @DisplayName("getCategoryById - 카테고리 조회")
+    void getCategoryById() {
         Long categoryId = 3L;
-        CategoryDto category = categoryQuery.getBy(categoryId);
+        CategoryDto category = categoryQuery.getCategoryById(categoryId);
 
         assertThat(category).isNotNull();
         assertThat(category.getId()).isEqualTo(categoryId);

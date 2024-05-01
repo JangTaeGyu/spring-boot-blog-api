@@ -18,54 +18,54 @@ class CategoryUpdaterTest {
     }
 
     @Test
-    @DisplayName("update - 카테고리 수정")
-    void update() {
+    @DisplayName("updateCategoryById - 카테고리 수정")
+    void updateCategoryById() {
         assertDoesNotThrow(() -> {
             CategoryData categoryData = new CategoryData("Category", "Category Description");
-            categoryUpdater.update(3L, categoryData);
+            categoryUpdater.updateCategoryById(3L, categoryData);
         });
     }
 
     @Test
-    @DisplayName("update - 카테고리 수정 오류 - CategoryNotFoundException")
-    void updateCategory_CategoryNotFoundException() {
+    @DisplayName("updateCategoryById - 카테고리 수정 오류 - CategoryNotFoundException")
+    void updateCategoryById_CategoryNotFoundException() {
         assertThatThrownBy(() -> {
             CategoryData categoryData = new CategoryData("Category", "Category Description");
-            categoryUpdater.update(6L, categoryData);
+            categoryUpdater.updateCategoryById(6L, categoryData);
         }).isInstanceOf(CategoryNotFoundException.class);
     }
 
     @Test
-    @DisplayName("updateShow - 카테고리 활성화, 비활성황화 처리")
-    void updateShow() {
+    @DisplayName("setCategoryVisibility - 카테고리 활성화, 비활성황화 처리")
+    void setCategoryVisibility() {
         assertDoesNotThrow(() -> {
-            categoryUpdater.updateShow(5L, true);
+            categoryUpdater.setCategoryVisibility(5L, true);
         });
     }
 
     @Test
-    @DisplayName("updateShow - 카테고리 활성화, 비활성황화 처리 오류 - CategoryNotFoundException")
-    void updateShow_CategoryNotFoundException() {
+    @DisplayName("setCategoryVisibility - 카테고리 활성화, 비활성황화 처리 오류 - CategoryNotFoundException")
+    void setCategoryVisibility_CategoryNotFoundException() {
         assertThatThrownBy(() -> {
-            categoryUpdater.updateShow(6L, true);
+            categoryUpdater.setCategoryVisibility(6L, true);
         }).isInstanceOf(CategoryNotFoundException.class);
     }
 
     @Test
-    @DisplayName("sort - 카테고리 정렬")
-    void sort() {
+    @DisplayName("sortCategories - 카테고리 정렬")
+    void sortCategories() {
         assertDoesNotThrow(() -> {
             CategorySortData data = new CategorySortData(List.of(1L, 2L));
-            categoryUpdater.sort(data);
+            categoryUpdater.sortCategories(data);
         });
     }
 
     @Test
-    @DisplayName("sort - 카테고리 정렬 오류 - CategoryNotFoundException")
+    @DisplayName("sortCategories - 카테고리 정렬 오류 - CategoryNotFoundException")
     void sortCategories_CategoryNotFoundException() {
         assertThatThrownBy(() -> {
             CategorySortData data = new CategorySortData(List.of(1L, 2L, 6L, 7L));
-            categoryUpdater.sort(data);
+            categoryUpdater.sortCategories(data);
         }).isInstanceOf(CategoryNotFoundException.class);
     }
 }

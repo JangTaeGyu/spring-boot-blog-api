@@ -79,4 +79,10 @@ public class CategoryRepositoryImpl implements CategoryRepository {
                 )
                 .execute();
     }
+
+    @Transactional
+    @Override
+    public void delete(Category category) {
+        categoryRepository.delete(category);
+    }
 }
