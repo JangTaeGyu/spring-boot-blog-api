@@ -13,4 +13,10 @@ public class CategoryQuery {
     public List<CategoryDto> getAllSorted() {
         return categoryRepository.findAllSortedAscOrder();
     }
+
+    public CategoryDto getCategory(Long categoryId) {
+        return categoryRepository.findById(categoryId)
+                .map(Category::toDto)
+                .orElseThrow(() -> new CategoryNotFoundException("categoryId", categoryId));
+    }
 }
