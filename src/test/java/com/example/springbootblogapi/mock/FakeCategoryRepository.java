@@ -2,6 +2,7 @@ package com.example.springbootblogapi.mock;
 
 import com.example.springbootblogapi.domain.category.Category;
 import com.example.springbootblogapi.domain.category.CategoryData;
+import com.example.springbootblogapi.domain.category.CategoryDto;
 import com.example.springbootblogapi.domain.category.CategoryRepository;
 
 import java.util.ArrayList;
@@ -20,6 +21,11 @@ public class FakeCategoryRepository implements CategoryRepository {
             category.update(new CategoryData("Category 0" + i, "Category Description 0" + i));
             this.data.add(category);
         });
+    }
+
+    @Override
+    public List<CategoryDto> findAllSortedAscOrder() {
+        return List.of();
     }
 
     @Override

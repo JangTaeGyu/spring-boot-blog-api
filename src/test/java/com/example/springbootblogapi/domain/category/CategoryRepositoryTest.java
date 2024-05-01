@@ -9,6 +9,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -23,6 +24,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 class CategoryRepositoryTest {
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Test
+    @DisplayName("findAllSortedAscOrder - 정렬된 카테고리 목록 조회")
+    void findAllSortedAscOrder() {
+        List<CategoryDto> categories = categoryRepository.findAllSortedAscOrder();
+
+        assertThat(categories.size()).isEqualTo(5);
+    }
 
     @Test
     @DisplayName("create - 카테고리 생성")
