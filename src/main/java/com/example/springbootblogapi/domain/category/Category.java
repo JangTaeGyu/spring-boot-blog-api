@@ -32,4 +32,15 @@ public class Category extends BaseEntity {
         this.description = description;
         this.show = show;
     }
+
+    public static Category fakeCategory(Long id) {
+        Category category = new Category();
+        category.id = id;
+        return  category;
+    }
+
+    public void update(CategoryData data) {
+        this.name = data.getName();
+        this.description = data.getDescription();
+    }
 }
