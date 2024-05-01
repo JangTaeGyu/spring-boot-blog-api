@@ -39,6 +39,10 @@ public class Category extends BaseEntity {
         return  category;
     }
 
+    public CategoryDto toDto() {
+        return new CategoryDto(this.id, this.name, this.description, this.show, this.sort, this.createdAt, this.updatedAt);
+    }
+
     public void update(CategoryData data) {
         this.name = data.getName();
         this.description = data.getDescription();

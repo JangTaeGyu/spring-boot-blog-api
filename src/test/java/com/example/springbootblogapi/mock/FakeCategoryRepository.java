@@ -25,7 +25,7 @@ public class FakeCategoryRepository implements CategoryRepository {
 
     @Override
     public List<CategoryDto> findAllSortedAscOrder() {
-        return List.of();
+        return data.stream().map(Category::toDto).toList();
     }
 
     @Override
