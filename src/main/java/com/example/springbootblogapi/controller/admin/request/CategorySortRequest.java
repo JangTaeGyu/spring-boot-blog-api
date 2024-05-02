@@ -12,6 +12,6 @@ public class CategorySortRequest {
     private List<Long> ids;
 
     public CategorySortData toData() {
-        return new CategorySortData(this.ids);
+        return new CategorySortData(ids);
     }
 }
