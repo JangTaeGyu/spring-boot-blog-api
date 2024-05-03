@@ -2,11 +2,10 @@ package com.example.springbootblogapi.controller.admin;
 
 import com.example.springbootblogapi.controller.admin.request.CategoryInputRequest;
 import com.example.springbootblogapi.controller.admin.request.CategorySortRequest;
-import com.example.springbootblogapi.controller.admin.response.CategoryListResponse;
-import com.example.springbootblogapi.controller.admin.response.CategoryResponse;
-import com.example.springbootblogapi.controller.admin.response.CreatedResponse;
 import com.example.springbootblogapi.domain.category.CategoryDto;
 import com.example.springbootblogapi.domain.category.CategoryService;
+import com.example.springbootblogapi.support.response.CreatedResponse;
+import com.example.springbootblogapi.support.response.SuccessfulResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +21,9 @@ public class AdminCategoryController {
     private final CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<CategoryListResponse> index() {
+    public ResponseEntity<?> index() {
         List<CategoryDto> categories = categoryService.getAllSortedCategories();
-        CategoryListResponse response = new CategoryListResponse(categories);
+        SuccessfulResponse<List<CategoryDto>> response = new SuccessfulResponse<>(categories);
         return ResponseEntity.ok(response);
     }
 
@@ -36,9 +35,9 @@ public class AdminCategoryController {
     }
 
     @GetMapping("/{categoryId}")
-    public ResponseEntity<CategoryResponse> show(@PathVariable Long categoryId) {
+    public ResponseEntity<?> show(@PathVariable Long categoryId) {
         CategoryDto category = categoryService.getCategoryById(categoryId);
-        CategoryResponse response = new CategoryResponse(category);
+        SuccessfulResponse<CategoryDto> response = new SuccessfulResponse<>(category);
         return ResponseEntity.ok(response);
     }
 
