@@ -1,6 +1,8 @@
 package com.example.springbootblogapi.domain.category;
 
-public class CategoryNotFoundException extends RuntimeException {
+import com.example.springbootblogapi.support.exception.HttpException;
+
+public class CategoryNotFoundException extends HttpException {
     private final static String MESSAGE = "category not found";
 
     public CategoryNotFoundException(String key, Object data) {
