@@ -7,10 +7,10 @@ import java.util.Date;
 
 @Getter
 public class ErrorResponse {
-    private final Date datetime = new Date();
+    private final Date timestamp = new Date();
     private final Integer status;
-    private final String path;
     private final String message;
+    private final String path;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String details;

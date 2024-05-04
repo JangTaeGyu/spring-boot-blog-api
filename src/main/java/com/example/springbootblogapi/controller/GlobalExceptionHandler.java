@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
         });
 
         HttpStatus httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
-        ValidationResponse response = new ValidationResponse( httpStatus.value(), request.getRequestURI(), "validation error", errors );
+        ValidationResponse response = new ValidationResponse( httpStatus.value(), request.getRequestURI(), "Validation Error", errors );
         return new ResponseEntity<>(response, httpStatus);
     }
 
@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e, HttpServletRequest request) {
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-        ErrorResponse response = new ErrorResponse(httpStatus.value(), request.getRequestURI(), "server error", e.getMessage());
+        ErrorResponse response = new ErrorResponse(httpStatus.value(), request.getRequestURI(), "Server Error", e.getMessage());
         return new ResponseEntity<>(response, httpStatus);
     }
 }
