@@ -1,4 +1,4 @@
-package com.example.springbootblogapi.controller.admin.request;
+package com.example.springbootblogapi.controller.request;
 
 import com.example.springbootblogapi.domain.category.CategorySortData;
 import lombok.Getter;

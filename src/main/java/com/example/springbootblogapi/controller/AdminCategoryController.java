@@ -1,11 +1,11 @@
-package com.example.springbootblogapi.controller.admin;
+package com.example.springbootblogapi.controller;
 
-import com.example.springbootblogapi.controller.admin.request.CategoryInputRequest;
-import com.example.springbootblogapi.controller.admin.request.CategorySortRequest;
+import com.example.springbootblogapi.controller.request.CategoryInputRequest;
+import com.example.springbootblogapi.controller.request.CategorySortRequest;
 import com.example.springbootblogapi.domain.category.CategoryDto;
 import com.example.springbootblogapi.domain.category.CategoryService;
-import com.example.springbootblogapi.support.response.CreatedResponse;
-import com.example.springbootblogapi.support.response.SuccessfulResponse;
+import com.example.springbootblogapi.controller.response.CreatedResponse;
+import com.example.springbootblogapi.controller.response.SuccessfulResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

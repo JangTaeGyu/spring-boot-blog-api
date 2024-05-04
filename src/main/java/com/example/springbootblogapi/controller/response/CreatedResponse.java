@@ -1,4 +1,4 @@
-package com.example.springbootblogapi.support.response;
+package com.example.springbootblogapi.controller.response;
 
 import lombok.Getter;
 
