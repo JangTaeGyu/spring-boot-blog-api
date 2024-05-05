@@ -17,7 +17,7 @@ public class FakeCategoryRepository implements CategoryRepository {
 
     public FakeCategoryRepository() {
         IntStream.range(1, 6).forEach(i -> {
-            Category category = Category.fakeCategory(id.getAndIncrement());
+            Category category = Category.fakeEntity(id.getAndIncrement());
             category.update(new CategoryData("Category 0" + i, "Category Description 0" + i));
             this.data.add(category);
         });
@@ -30,7 +30,7 @@ public class FakeCategoryRepository implements CategoryRepository {
 
     @Override
     public Long create(Category category) {
-        Category createdCategory = Category.fakeCategory(id.getAndIncrement());
+        Category createdCategory = Category.fakeEntity(id.getAndIncrement());
         return createdCategory.getId();
     }
 

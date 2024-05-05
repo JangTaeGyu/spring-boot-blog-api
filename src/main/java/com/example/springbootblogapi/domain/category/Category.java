@@ -33,7 +33,7 @@ public class Category extends BaseEntity {
         this.show = show;
     }
 
-    public static Category fakeCategory(Long id) {
+    public static Category fakeEntity(Long id) {
         Category category = new Category();
         category.id = id;
         return  category;
