@@ -1,6 +1,5 @@
 package com.example.springbootblogapi.domain.post;
 
-import com.example.springbootblogapi.domain.category.Category;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +55,26 @@ class PostRepositoryTest {
             Post post = new Post(3L, null, "Post Body 11", true);
             postRepository.create(post);
         }).isInstanceOf(DataIntegrityViolationException.class);
+    }
+
+    @Test
+    @DisplayName("findById = 포스트 조회")
+    void findById() {
+        Long postId = 8L;
+
+        Optional<Post> result = postRepository.findById(postId);
+        assertThat(result.isPresent()).isTrue();
+
+        if (result.isPresent()) {
+            Post post = result.get();
+            assertThat(post.getId()).isEqualTo(postId);
+        }
+    }
+
+    @Test
+    @DisplayName("findById = 포스트 조회 - isEmpty")
+    void findById_isEmpty() {
+        Optional<Post> result = postRepository.findById(25L);
+        assertThat(result.isEmpty()).isTrue();
     }
 }
