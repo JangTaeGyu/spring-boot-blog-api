@@ -2,10 +2,10 @@ package com.example.springbootblogapi.controller;
 
 import com.example.springbootblogapi.controller.request.CategoryInputRequest;
 import com.example.springbootblogapi.controller.request.CategorySortRequest;
-import com.example.springbootblogapi.domain.category.CategoryDto;
-import com.example.springbootblogapi.domain.category.CategoryService;
 import com.example.springbootblogapi.controller.response.CreatedResponse;
 import com.example.springbootblogapi.controller.response.SuccessfulResponse;
+import com.example.springbootblogapi.domain.category.CategoryDto;
+import com.example.springbootblogapi.domain.category.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,13 +32,6 @@ public class AdminCategoryController {
         Long categoryId = categoryService.createCategory(request.toData());
         CreatedResponse response = new CreatedResponse(categoryId);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }
-
-    @GetMapping("/{categoryId}")
-    public ResponseEntity<?> show(@PathVariable Long categoryId) {
-        CategoryDto category = categoryService.getCategoryById(categoryId);
-        SuccessfulResponse<CategoryDto> response = new SuccessfulResponse<>(category);
-        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{categoryId}")
