@@ -6,14 +6,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Repository
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class PostRepositoryImpl implements PostRepository {
-    private JpaPostRepository postRepository;
+    private final JpaPostRepository postRepository;
 
     @Override
     public Long create(Post post) {
         return postRepository.save(post).getId();
+    }
+
+    @Override
+    public Optional<Post> findById(Long postId) {
+        return postRepository.findById(postId);
     }
 }
