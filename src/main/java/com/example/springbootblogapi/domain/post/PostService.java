@@ -14,6 +14,7 @@ public class PostService {
     private final PostQuery postQuery;
     private final PostCreator postCreator;
     private final PostUpdater postUpdater;
+    private final PostDeleter postDeleter;
 
     public Page<PostDto> searchPostsBy(PostSearchData searchData, Pageable pageable) {
         return postQuery.searchPostsBy(searchData, pageable);
@@ -33,5 +34,9 @@ public class PostService {
 
     public void setPostVisibility(Long postId, boolean show) {
         postUpdater.setPostVisibility(postId, show);
+    }
+
+    public void deletePostById(Long postId) {
+        postDeleter.deletePostById(postId);
     }
 }

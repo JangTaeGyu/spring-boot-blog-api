@@ -52,4 +52,8 @@ public class Post extends BaseEntity {
     public void changeShow(boolean show) {
         this.show = show;
     }
+
+    public void delete() {
+        this.deletedAt = LocalDateTime.now();
+    }
 }

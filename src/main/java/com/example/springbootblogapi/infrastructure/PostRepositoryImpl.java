@@ -42,7 +42,8 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     private BooleanBuilder toBooleanBuilder(PostSearchData postSearchData) {
-        return new BooleanBuilder(eqCategoryId(postSearchData.getCategoryId()))
+        return new BooleanBuilder(post.deletedAt.isNull())
+                .and(eqCategoryId(postSearchData.getCategoryId()))
                 .and(eqShow(postSearchData.getShow()))
                 .and(containsKeyword(postSearchData.getKeyword()));
     }

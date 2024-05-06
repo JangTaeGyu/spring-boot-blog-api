@@ -57,10 +57,4 @@ public class AdminCategoryController {
         categoryService.sortCategories(request.toData());
         return ResponseEntity.ok(null);
     }
-
-    @DeleteMapping("/{categoryId}")
-    public ResponseEntity<Void> delete(@PathVariable Long categoryId) {
-        categoryService.deleteCategoryById(categoryId);
-        return ResponseEntity.noContent().build();
-    }
 }
