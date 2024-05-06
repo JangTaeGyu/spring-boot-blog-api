@@ -21,4 +21,11 @@ public class CategoryQuery {
                 .map(Category::toDto)
                 .orElseThrow(() -> new CategoryNotFoundException("categoryId", categoryId));
     }
+
+    public void checkCategory(Long categoryId) {
+        boolean exists = categoryRepository.existsById(categoryId);
+        if (!exists) {
+            throw new CategoryNotFoundException("categoryId", categoryId);
+        }
+    }
 }

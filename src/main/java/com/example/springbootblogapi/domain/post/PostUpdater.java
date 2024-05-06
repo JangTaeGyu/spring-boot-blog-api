@@ -10,11 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class PostUpdater {
     private final PostRepository postRepository;
+    private final PostValidation postValidation;
 
     @Transactional
-    public void updatePostById(Long postId, PostData postData) {
-        Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("postId", postId));
-        post.update(postData);
+    public void updatePostById(Long postId, PostData data) {
+        postValidation.validate(data);
+        postRepository.findById(postId)
+                .orElseThrow(() -> new PostNotFoundException("postId", postId))
+                .update(data);
     }
 
     @Transactional

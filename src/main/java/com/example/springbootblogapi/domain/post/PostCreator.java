@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PostCreator {
     private final PostRepository postRepository;
+    private final PostValidation postValidation;
 
     public Long createPost(PostData data) {
+        postValidation.validate(data);
         return postRepository.create(data.toEntity());
     }
 }
