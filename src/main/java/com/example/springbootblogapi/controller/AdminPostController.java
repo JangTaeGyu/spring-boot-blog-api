@@ -60,4 +60,16 @@ public class AdminPostController {
         postService.updatePostById(postId, request.toPostData());
         return ResponseEntity.ok(null);
     }
+
+    @PutMapping("/{postId}/enable")
+    public ResponseEntity<Void> enable(@PathVariable Long postId) {
+        postService.setPostVisibility(postId, true);
+        return ResponseEntity.ok(null);
+    }
+
+    @PutMapping("/{postId}/disable")
+    public ResponseEntity<Void> disable(@PathVariable Long postId) {
+        postService.setPostVisibility(postId, false);
+        return ResponseEntity.ok(null);
+    }
 }
