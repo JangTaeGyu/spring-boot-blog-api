@@ -3,6 +3,7 @@ package com.example.springbootblogapi.infrastructure;
 import com.example.springbootblogapi.domain.post.*;
 import com.example.springbootblogapi.domain.post.data.PostSearchData;
 import com.example.springbootblogapi.domain.post.dto.PostDto;
+import com.example.springbootblogapi.domain.post.dto.QPostDto;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -36,8 +37,7 @@ public class PostRepositoryImpl implements PostRepository {
                 post.createdAt,
                 post.updatedAt,
                 category.id,
-                category.name,
-                category.show
+                category.name
         );
     }
 
@@ -66,6 +66,7 @@ public class PostRepositoryImpl implements PostRepository {
         return PageableExecutionUtils.getPage(content, pageable, count::fetchOne);
     }
 
+    @Transactional
     @Override
     public Long create(Post post) {
         return postRepository.save(post).getId();

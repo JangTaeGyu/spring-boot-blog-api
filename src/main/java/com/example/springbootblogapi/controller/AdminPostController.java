@@ -1,5 +1,7 @@
 package com.example.springbootblogapi.controller;
 
+import com.example.springbootblogapi.controller.request.PostInputRequest;
+import com.example.springbootblogapi.controller.response.CreatedResponse;
 import com.example.springbootblogapi.controller.response.PaginationResponse;
 import com.example.springbootblogapi.domain.post.PostService;
 import com.example.springbootblogapi.domain.post.data.PostSearchData;
@@ -10,12 +12,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -37,5 +38,12 @@ public class AdminPostController {
         Page<PostDto> pagePost = postService.searchPostsBy(request, pageable);
         PaginationResponse<List<PostDto>> response = new PaginationResponse<>(pagePost.getContent(), PaginatedData.of(pagePost));
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping
+    public ResponseEntity<CreatedResponse> create(@RequestBody @Valid PostInputRequest request) {
+        Long postId = postService.createPost(request.toPostData());
+        CreatedResponse response = new CreatedResponse(postId);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

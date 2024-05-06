@@ -25,12 +25,10 @@ public class PostDto {
     public static class PostCategory {
         private final Long id;
         private final String name;
-        private final boolean show;
 
-        public PostCategory(Long id, String name, boolean show) {
+        public PostCategory(Long id, String name) {
             this.id = id;
             this.name = name;
-            this.show = show;
         }
     }
 
@@ -43,8 +41,7 @@ public class PostDto {
             LocalDateTime createdAt,
             LocalDateTime updatedAt,
             Long categoryId,
-            String categoryName,
-            boolean categoryShow
+            String categoryName
     ) {
         this.id = id;
         this.title = title;
@@ -52,6 +49,6 @@ public class PostDto {
         this.show = show;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.category = new PostCategory(categoryId, categoryName, categoryShow);
+        this.category = new PostCategory(categoryId, categoryName);
     }
 }
