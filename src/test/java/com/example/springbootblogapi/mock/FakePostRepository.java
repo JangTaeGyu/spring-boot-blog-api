@@ -1,8 +1,8 @@
 package com.example.springbootblogapi.mock;
 
-import com.example.springbootblogapi.domain.post.Post;
-import com.example.springbootblogapi.domain.post.PostData;
-import com.example.springbootblogapi.domain.post.PostRepository;
+import com.example.springbootblogapi.domain.post.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,11 @@ public class FakePostRepository implements PostRepository {
             post.update(new PostData(categoryId, "Post Title 0" + i, "Post Body 0" + i));
             this.data.add(post);
         });
+    }
+
+    @Override
+    public Page<PostDto> searchBy(PostSearchData postSearchData, Pageable pageable) {
+        return null;
     }
 
     @Override

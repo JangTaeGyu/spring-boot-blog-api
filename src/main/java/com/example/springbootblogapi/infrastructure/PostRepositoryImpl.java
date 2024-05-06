@@ -46,7 +46,7 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Page<PostDto> searchPostsBy(PostSearchData postSearchData, Pageable pageable) {
+    public Page<PostDto> searchBy(PostSearchData postSearchData, Pageable pageable) {
         BooleanBuilder booleanBuilder = toBooleanBuilder(postSearchData);
 
         List<PostDto> content = query.select(selectFields())

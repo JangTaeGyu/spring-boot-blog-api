@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface PostRepository {
-    Page<PostDto> searchPostsBy(PostSearchData postSearchData, Pageable pageable);
+    Page<PostDto> searchBy(PostSearchData postSearchData, Pageable pageable);
 
     Long create(Post post);
 

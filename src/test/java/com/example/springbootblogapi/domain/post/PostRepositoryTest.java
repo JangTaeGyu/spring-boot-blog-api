@@ -5,10 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -24,6 +28,30 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 class PostRepositoryTest {
     @Autowired
     private PostRepository postRepository;
+
+    @Test
+    @DisplayName("searchBy - 포스트 검색 - categoryId")
+    void searchByCategoryId() {
+        Pageable pageable = PageRequest.of(0, 10);
+        PostSearchData searchData = new PostSearchData(2L, null, null);
+
+        Page<PostDto> pagePost = postRepository.searchBy(searchData, pageable);
+        pagePost.getContent().forEach(post -> {
+            assertThat(post.getCategory().getId()).isEqualTo(searchData.getCategoryId());
+        });
+    }
+
+    @Test
+    @DisplayName("searchBy - 포스트 검색 - show")
+    void searchByShow() {
+        Pageable pageable = PageRequest.of(0, 10);
+        PostSearchData searchData = new PostSearchData(null, true, null);
+
+        Page<PostDto> pagePost = postRepository.searchBy(searchData, pageable);
+        pagePost.getContent().forEach(post -> {
+            assertThat(post.isShow()).isTrue();
+        });
+    }
 
     @Test
     @DisplayName("create - 포스트 생성")
