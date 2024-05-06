@@ -77,6 +77,20 @@ public class PostRepositoryImpl implements PostRepository {
         return postRepository.findById(postId);
     }
 
+    @Override
+    public Optional<PostDto> findPostById(Long postId) {
+        return Optional.ofNullable(
+                query.select(selectFields())
+                        .from(post)
+                        .innerJoin(category).on(post.categoryId.eq(category.id))
+                        .where(
+                                post.id.eq(postId),
+                                post.deletedAt.isNull()
+                        )
+                        .fetchFirst()
+        );
+    }
+
     public BooleanExpression eqCategoryId(Long categoryId) {
         if (categoryId == null) return null;
         return post.categoryId.eq(categoryId);

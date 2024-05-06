@@ -21,4 +21,8 @@ public class PostService {
     public Long createPost(PostData data) {
         return postCreator.createPost(data);
     }
+
+    public PostDto getPostById(Long postId) {
+        return postQuery.getPostById(postId);
+    }
 }

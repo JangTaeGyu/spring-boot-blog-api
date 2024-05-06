@@ -13,4 +13,6 @@ public interface PostRepository {
     Long create(Post post);
 
     Optional<Post> findById(Long postId);
+
+    Optional<PostDto> findPostById(Long postId);
 }

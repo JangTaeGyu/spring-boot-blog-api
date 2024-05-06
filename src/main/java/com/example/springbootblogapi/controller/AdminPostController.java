@@ -3,6 +3,7 @@ package com.example.springbootblogapi.controller;
 import com.example.springbootblogapi.controller.request.PostInputRequest;
 import com.example.springbootblogapi.controller.response.CreatedResponse;
 import com.example.springbootblogapi.controller.response.PaginationResponse;
+import com.example.springbootblogapi.controller.response.SuccessfulResponse;
 import com.example.springbootblogapi.domain.post.PostService;
 import com.example.springbootblogapi.domain.post.data.PostSearchData;
 import com.example.springbootblogapi.domain.post.dto.PostDto;
@@ -45,5 +46,12 @@ public class AdminPostController {
         Long postId = postService.createPost(request.toPostData());
         CreatedResponse response = new CreatedResponse(postId);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{postId}")
+    public ResponseEntity<?> show(@PathVariable Long postId) {
+        PostDto post = postService.getPostById(postId);
+        SuccessfulResponse<PostDto> response = new SuccessfulResponse<>(post);
+        return ResponseEntity.ok(response);
     }
 }
