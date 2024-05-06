@@ -11,8 +11,8 @@ public class PostService {
     private final PostQuery postQuery;
     private final PostCreator postCreator;
 
-    public Page<PostDto> searchPosts(PostSearchData searchData, Pageable pageable) {
-        return postQuery.searchPosts(searchData, pageable);
+    public Page<PostDto> searchPostsBy(PostSearchData searchData, Pageable pageable) {
+        return postQuery.searchPostsBy(searchData, pageable);
     }
 
     public Long createPost(PostData data) {

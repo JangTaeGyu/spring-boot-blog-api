@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class PostQuery {
     private final PostRepository postRepository;
 
-    public Page<PostDto> searchPosts(PostSearchData searchData, Pageable pageable) {
+    public Page<PostDto> searchPostsBy(PostSearchData searchData, Pageable pageable) {
         return postRepository.searchBy(searchData, pageable);
     }
 }

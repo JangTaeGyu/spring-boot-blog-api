@@ -14,6 +14,6 @@ class PostQueryTest {
     }
 
     @Test
-    void searchPosts() {
+    void searchPostsBy() {
     }
 }
