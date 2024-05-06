@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class PostService {
     private final PostQuery postQuery;
     private final PostCreator postCreator;
+    private final PostUpdater postUpdater;
 
     public Page<PostDto> searchPostsBy(PostSearchData searchData, Pageable pageable) {
         return postQuery.searchPostsBy(searchData, pageable);
@@ -24,5 +25,13 @@ public class PostService {
 
     public PostDto getPostById(Long postId) {
         return postQuery.getPostById(postId);
+    }
+
+    public void updatePostById(Long postId, PostData postData) {
+        postUpdater.updatePostById(postId, postData);
+    }
+
+    public void setPostVisibility(Long postId, boolean show) {
+        postUpdater.setPostVisibility(postId, show);
     }
 }

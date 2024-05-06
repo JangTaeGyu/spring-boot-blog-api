@@ -48,4 +48,8 @@ public class Post extends BaseEntity {
         this.title = postData.getTitle();
         this.body = postData.getBody();
     }
+
+    public void changeShow(boolean show) {
+        this.show = show;
+    }
 }
