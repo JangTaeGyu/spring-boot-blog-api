@@ -4,6 +4,8 @@ import com.example.springbootblogapi.domain.category.Category;
 import com.example.springbootblogapi.domain.category.CategoryDto;
 import com.example.springbootblogapi.domain.category.CategoryRepository;
 import com.example.springbootblogapi.domain.category.QCategoryDto;
+import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.springbootblogapi.domain.category.QCategory.category;
+import static com.example.springbootblogapi.domain.post.QPost.post;
 
 @Repository
 @Transactional(readOnly = true)
@@ -30,7 +33,14 @@ public class CategoryRepositoryImpl implements CategoryRepository {
                         category.show,
                         category.sort,
                         category.createdAt,
-                        category.updatedAt
+                        category.updatedAt,
+                        ExpressionUtils.as(
+                                JPAExpressions.select(post.count())
+                                        .from(post)
+                                        .where(
+                                                post.deletedAt.isNull(),
+                                                post.categoryId.eq(category.id)
+                                        ), "countOfPosts")
                 ))
                 .from(category)
                 .orderBy(category.sort.asc())
