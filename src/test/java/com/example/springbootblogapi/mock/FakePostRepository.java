@@ -1,6 +1,9 @@
 package com.example.springbootblogapi.mock;
 
 import com.example.springbootblogapi.domain.post.*;
+import com.example.springbootblogapi.domain.post.data.PostData;
+import com.example.springbootblogapi.domain.post.data.PostSearchData;
+import com.example.springbootblogapi.domain.post.dto.PostDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

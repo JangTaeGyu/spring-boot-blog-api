@@ -1,6 +1,8 @@
 package com.example.springbootblogapi.infrastructure;
 
 import com.example.springbootblogapi.domain.post.*;
+import com.example.springbootblogapi.domain.post.data.PostSearchData;
+import com.example.springbootblogapi.domain.post.dto.PostDto;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;

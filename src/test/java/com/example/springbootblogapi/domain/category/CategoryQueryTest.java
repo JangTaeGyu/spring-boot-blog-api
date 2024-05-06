@@ -1,5 +1,7 @@
 package com.example.springbootblogapi.domain.category;
 
+import com.example.springbootblogapi.domain.category.dto.CategoryDto;
+import com.example.springbootblogapi.domain.category.exception.CategoryNotFoundException;
 import com.example.springbootblogapi.mock.TestCategoryContainer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

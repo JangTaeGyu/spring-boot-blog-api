@@ -1,5 +1,7 @@
 package com.example.springbootblogapi.domain.category;
 
+import com.example.springbootblogapi.domain.category.dto.CategoryDto;
+
 import java.util.List;
 import java.util.Optional;
 

@@ -1,5 +1,8 @@
 package com.example.springbootblogapi.domain.category;
 
+import com.example.springbootblogapi.domain.category.data.CategoryData;
+import com.example.springbootblogapi.domain.category.data.CategorySortData;
+import com.example.springbootblogapi.domain.category.exception.CategoryNotFoundException;
 import com.example.springbootblogapi.mock.TestCategoryContainer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

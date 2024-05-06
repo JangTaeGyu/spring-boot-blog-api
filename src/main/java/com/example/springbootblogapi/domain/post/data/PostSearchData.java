@@ -1,4 +1,4 @@
-package com.example.springbootblogapi.domain.post;
+package com.example.springbootblogapi.domain.post.data;
 
 import lombok.Getter;
 

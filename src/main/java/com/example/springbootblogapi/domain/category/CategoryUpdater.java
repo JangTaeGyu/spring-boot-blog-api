@@ -1,5 +1,8 @@
 package com.example.springbootblogapi.domain.category;
 
+import com.example.springbootblogapi.domain.category.data.CategoryData;
+import com.example.springbootblogapi.domain.category.data.CategorySortData;
+import com.example.springbootblogapi.domain.category.exception.CategoryNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

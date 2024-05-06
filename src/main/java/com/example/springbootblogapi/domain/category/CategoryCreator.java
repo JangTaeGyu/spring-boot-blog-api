@@ -1,5 +1,6 @@
 package com.example.springbootblogapi.domain.category;
 
+import com.example.springbootblogapi.domain.category.data.CategoryData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

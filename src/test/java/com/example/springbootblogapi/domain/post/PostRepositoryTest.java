@@ -1,5 +1,7 @@
 package com.example.springbootblogapi.domain.post;
 
+import com.example.springbootblogapi.domain.post.data.PostSearchData;
+import com.example.springbootblogapi.domain.post.dto.PostDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

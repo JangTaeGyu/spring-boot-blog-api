@@ -1,6 +1,8 @@
 package com.example.springbootblogapi.domain.category;
 
 import com.example.springbootblogapi.domain.BaseEntity;
+import com.example.springbootblogapi.domain.category.data.CategoryData;
+import com.example.springbootblogapi.domain.category.dto.CategoryDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

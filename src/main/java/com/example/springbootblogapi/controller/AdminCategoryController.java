@@ -4,7 +4,7 @@ import com.example.springbootblogapi.controller.request.CategoryInputRequest;
 import com.example.springbootblogapi.controller.request.CategorySortRequest;
 import com.example.springbootblogapi.controller.response.CreatedResponse;
 import com.example.springbootblogapi.controller.response.SuccessfulResponse;
-import com.example.springbootblogapi.domain.category.CategoryDto;
+import com.example.springbootblogapi.domain.category.dto.CategoryDto;
 import com.example.springbootblogapi.domain.category.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.example.springbootblogapi.domain.category;
+package com.example.springbootblogapi.domain.category.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;

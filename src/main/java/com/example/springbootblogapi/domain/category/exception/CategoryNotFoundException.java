@@ -1,4 +1,4 @@
-package com.example.springbootblogapi.domain.category;
+package com.example.springbootblogapi.domain.category.exception;
 
 import com.example.springbootblogapi.support.exception.HttpException;
 

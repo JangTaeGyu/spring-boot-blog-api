@@ -1,5 +1,6 @@
 package com.example.springbootblogapi.domain.post;
 
+import com.example.springbootblogapi.domain.post.data.PostData;
 import com.example.springbootblogapi.mock.TestPostContainer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

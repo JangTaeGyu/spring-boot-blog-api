@@ -1,7 +1,7 @@
 package com.example.springbootblogapi.infrastructure;
 
 import com.example.springbootblogapi.domain.category.Category;
-import com.example.springbootblogapi.domain.category.CategoryDto;
+import com.example.springbootblogapi.domain.category.dto.CategoryDto;
 import com.example.springbootblogapi.domain.category.CategoryRepository;
 import com.example.springbootblogapi.domain.category.QCategoryDto;
 import com.querydsl.core.types.ExpressionUtils;

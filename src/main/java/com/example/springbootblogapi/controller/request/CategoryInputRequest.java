@@ -1,6 +1,6 @@
 package com.example.springbootblogapi.controller.request;
 
-import com.example.springbootblogapi.domain.category.CategoryData;
+import com.example.springbootblogapi.domain.category.data.CategoryData;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;

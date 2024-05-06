@@ -1,5 +1,6 @@
-package com.example.springbootblogapi.domain.post;
+package com.example.springbootblogapi.domain.post.data;
 
+import com.example.springbootblogapi.domain.post.Post;
 import lombok.Getter;
 import org.springframework.util.Assert;
 

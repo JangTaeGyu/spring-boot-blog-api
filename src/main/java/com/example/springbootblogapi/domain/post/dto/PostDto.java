@@ -1,4 +1,4 @@
-package com.example.springbootblogapi.domain.post;
+package com.example.springbootblogapi.domain.post.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;

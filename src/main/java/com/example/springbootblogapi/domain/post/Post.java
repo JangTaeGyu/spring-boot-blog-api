@@ -1,6 +1,7 @@
 package com.example.springbootblogapi.domain.post;
 
 import com.example.springbootblogapi.domain.BaseEntity;
+import com.example.springbootblogapi.domain.post.data.PostData;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

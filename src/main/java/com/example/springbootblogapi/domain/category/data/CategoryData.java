@@ -1,5 +1,6 @@
-package com.example.springbootblogapi.domain.category;
+package com.example.springbootblogapi.domain.category.data;
 
+import com.example.springbootblogapi.domain.category.Category;
 import lombok.Getter;
 import org.springframework.util.Assert;
 

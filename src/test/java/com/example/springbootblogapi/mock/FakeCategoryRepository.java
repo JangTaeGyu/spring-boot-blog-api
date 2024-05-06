@@ -1,8 +1,8 @@
 package com.example.springbootblogapi.mock;
 
 import com.example.springbootblogapi.domain.category.Category;
-import com.example.springbootblogapi.domain.category.CategoryData;
-import com.example.springbootblogapi.domain.category.CategoryDto;
+import com.example.springbootblogapi.domain.category.data.CategoryData;
+import com.example.springbootblogapi.domain.category.dto.CategoryDto;
 import com.example.springbootblogapi.domain.category.CategoryRepository;
 
 import java.util.ArrayList;
