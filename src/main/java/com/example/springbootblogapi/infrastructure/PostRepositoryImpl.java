@@ -41,16 +41,16 @@ public class PostRepositoryImpl implements PostRepository {
         );
     }
 
-    private BooleanBuilder toBooleanBuilder(PostSearchData postSearchData) {
+    private BooleanBuilder toBooleanBuilder(PostSearchData searchData) {
         return new BooleanBuilder(post.deletedAt.isNull())
-                .and(eqCategoryId(postSearchData.getCategoryId()))
-                .and(eqShow(postSearchData.getShow()))
-                .and(containsKeyword(postSearchData.getKeyword()));
+                .and(eqCategoryId(searchData.getCategoryId()))
+                .and(eqShow(searchData.getShow()))
+                .and(containsKeyword(searchData.getKeyword()));
     }
 
     @Override
-    public Page<PostDto> searchBy(PostSearchData postSearchData, Pageable pageable) {
-        BooleanBuilder booleanBuilder = toBooleanBuilder(postSearchData);
+    public Page<PostDto> searchBy(PostSearchData searchData, Pageable pageable) {
+        BooleanBuilder booleanBuilder = toBooleanBuilder(searchData);
 
         List<PostDto> content = query.select(selectFields())
                 .from(post)
