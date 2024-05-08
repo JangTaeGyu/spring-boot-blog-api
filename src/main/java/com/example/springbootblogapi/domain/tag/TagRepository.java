@@ -5,5 +5,5 @@ import java.util.Optional;
 public interface TagRepository {
     Long create(Tag tag);
 
-    Optional<Tag> findByName(String name);
+    Optional<Tag> findByName(String tagName);
 }
