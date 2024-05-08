@@ -11,8 +11,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CommentService {
     private final CommentQuery commentQuery;
+    private final CommentUpdater commentUpdater;
 
     public Page<CommentDto> searchCommentsBy(CommentSearchData request, Pageable pageable) {
         return commentQuery.searchCommentsBy(request, pageable);
+    }
+
+
+    public void setCommentVisibility(Long commentId, boolean show) {
+        commentUpdater.setCommentVisibility(commentId, show);
     }
 }
