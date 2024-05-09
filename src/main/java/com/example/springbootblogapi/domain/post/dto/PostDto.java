@@ -3,8 +3,10 @@ package com.example.springbootblogapi.domain.post.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 public class PostDto {
@@ -20,6 +22,9 @@ public class PostDto {
     private final LocalDateTime updatedAt;
 
     private final PostCategory category;
+
+    @Setter
+    private List<PostTagDto> tags;
 
     @Getter
     public static class PostCategory {
