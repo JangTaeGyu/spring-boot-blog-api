@@ -2,6 +2,7 @@ package com.example.springbootblogapi.domain.post;
 
 import com.example.springbootblogapi.domain.post.data.PostData;
 import com.example.springbootblogapi.domain.post.data.PostSearchData;
+import com.example.springbootblogapi.domain.post.data.PostTagData;
 import com.example.springbootblogapi.domain.post.dto.PostDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,7 +21,7 @@ public class PostService {
         return postQuery.searchPostsBy(searchData, pageable);
     }
 
-    public Long createPost(PostData data) {
+    public Long createPost(PostData data, PostTagData tagData) {
         return postCreator.createPost(data);
     }
 
@@ -28,7 +29,7 @@ public class PostService {
         return postQuery.getPostById(postId);
     }
 
-    public void updatePostById(Long postId, PostData postData) {
+    public void updatePostById(Long postId, PostData postData, PostTagData tagData) {
         postUpdater.updatePostById(postId, postData);
     }
 

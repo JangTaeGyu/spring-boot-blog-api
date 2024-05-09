@@ -43,7 +43,7 @@ public class AdminPostController {
 
     @PostMapping
     public ResponseEntity<CreatedResponse> create(@RequestBody @Valid PostInputRequest request) {
-        Long postId = postService.createPost(request.toPostData());
+        Long postId = postService.createPost(request.toData(), request.toTagData());
         CreatedResponse response = new CreatedResponse(postId);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -57,7 +57,7 @@ public class AdminPostController {
 
     @PutMapping("/{postId}")
     public ResponseEntity<Void> update(@PathVariable Long postId, @RequestBody @Valid PostInputRequest request) {
-        postService.updatePostById(postId, request.toPostData());
+        postService.updatePostById(postId, request.toData(), request.toTagData());
         return ResponseEntity.ok(null);
     }
 
