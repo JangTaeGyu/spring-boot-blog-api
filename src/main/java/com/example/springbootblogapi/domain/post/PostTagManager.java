@@ -5,8 +5,6 @@ import com.example.springbootblogapi.domain.tag.TagCreator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @RequiredArgsConstructor
 public class PostTagManager {
