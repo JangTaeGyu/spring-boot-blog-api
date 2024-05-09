@@ -16,13 +16,16 @@ public class PostService {
     private final PostCreator postCreator;
     private final PostUpdater postUpdater;
     private final PostDeleter postDeleter;
+    private final PostTagManager postTagManager;
 
     public Page<PostDto> searchPostsBy(PostSearchData searchData, Pageable pageable) {
         return postQuery.searchPostsBy(searchData, pageable);
     }
 
     public Long createPost(PostData data, PostTagData tagData) {
-        return postCreator.createPost(data);
+        Long createdPostId =  postCreator.createPost(data);
+        postTagManager.attachTagsToPost(createdPostId, tagData);
+        return createdPostId;
     }
 
     public PostDto getPostById(Long postId) {
@@ -31,6 +34,7 @@ public class PostService {
 
     public void updatePostById(Long postId, PostData postData, PostTagData tagData) {
         postUpdater.updatePostById(postId, postData);
+        postTagManager.syncTagsToPost(postId, tagData);
     }
 
     public void setPostVisibility(Long postId, boolean show) {
@@ -39,5 +43,6 @@ public class PostService {
 
     public void deletePostById(Long postId) {
         postDeleter.deletePostById(postId);
+        postTagManager.detachTagsToPost(postId);
     }
 }
