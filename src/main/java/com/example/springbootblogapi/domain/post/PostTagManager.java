@@ -15,8 +15,7 @@ public class PostTagManager {
     public void attachTagsToPost(Long postId, List<String> tagNames) {
         tagNames.forEach(name -> {
             PostTagKey postTagKey = new PostTagKey(postId, tagCreator.getOrCreateTagId(name));
-            PostTag postTag = new PostTag(postTagKey);
-            postTagRepository.create(postTag);
+            postTagRepository.create(new PostTag(postTagKey));
         });
     }
 
