@@ -1,6 +1,7 @@
 package com.example.springbootblogapi.domain.post.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,9 @@ public class PostDto {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime updatedAt;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private final Long countOfComments;
 
     private final PostCategory category;
 
@@ -45,6 +49,7 @@ public class PostDto {
             boolean show,
             LocalDateTime createdAt,
             LocalDateTime updatedAt,
+            Long countOfComments,
             Long categoryId,
             String categoryName
     ) {
@@ -54,6 +59,7 @@ public class PostDto {
         this.show = show;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.countOfComments = countOfComments;
         this.category = new PostCategory(categoryId, categoryName);
     }
 }

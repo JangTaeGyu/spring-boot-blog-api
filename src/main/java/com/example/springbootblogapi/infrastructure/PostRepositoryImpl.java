@@ -5,7 +5,9 @@ import com.example.springbootblogapi.domain.post.data.PostSearchData;
 import com.example.springbootblogapi.domain.post.dto.PostDto;
 import com.example.springbootblogapi.domain.post.dto.QPostDto;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ import java.util.Optional;
 
 import static com.example.springbootblogapi.domain.category.QCategory.category;
 import static com.example.springbootblogapi.domain.post.QPost.post;
+import static com.example.springbootblogapi.domain.comment.QComment.comment;
 
 @Repository
 @Transactional(readOnly = true)
@@ -36,6 +39,12 @@ public class PostRepositoryImpl implements PostRepository {
                 post.show,
                 post.createdAt,
                 post.updatedAt,
+                ExpressionUtils.as(
+                        JPAExpressions.select(comment.count())
+                                .from(comment)
+                                .where(
+                                        comment.postId.eq(post.id)
+                                ), "countOfComments"),
                 category.id,
                 category.name
         );
