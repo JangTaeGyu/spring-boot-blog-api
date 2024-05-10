@@ -24,10 +24,6 @@ public class CategoryService {
         return categoryCreator.createCategory(data);
     }
 
-    public CategoryDto getCategoryById(Long categoryId) {
-        return categoryQuery.getCategoryById(categoryId);
-    }
-
     public void updateCategoryById(Long categoryId, CategoryData data) {
         categoryUpdater.updateCategoryById(categoryId, data);
     }
@@ -38,9 +34,5 @@ public class CategoryService {
 
     public void sortCategories(CategorySortData data) {
         categoryUpdater.sortCategories(data);
-    }
-
-    public void deleteCategoryById(Long categoryId) {
-        categoryDeleter.deleteCategoryById(categoryId);
     }
 }

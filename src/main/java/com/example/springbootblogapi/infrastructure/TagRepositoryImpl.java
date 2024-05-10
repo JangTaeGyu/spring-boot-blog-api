@@ -16,6 +16,7 @@ public class TagRepositoryImpl implements TagRepository {
     private final JpaTagRepository tagRepository;
     private final JPAQueryFactory query;
 
+    @Transactional
     @Override
     public Long create(Tag tag) {
         return tagRepository.save(tag).getId();
