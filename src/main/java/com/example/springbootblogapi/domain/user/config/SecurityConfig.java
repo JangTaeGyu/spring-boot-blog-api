@@ -1,6 +1,5 @@
 package com.example.springbootblogapi.domain.user.config;
 
-import com.example.springbootblogapi.domain.user.JwtAuthenticationEntryPoint;
 import com.example.springbootblogapi.domain.user.JwtAuthenticationFilter;
 import com.example.springbootblogapi.domain.user.UserRole;
 import lombok.RequiredArgsConstructor;
