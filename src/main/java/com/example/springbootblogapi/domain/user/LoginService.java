@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LoginService {
     private final AuthenticationManager authenticationManager;
+    private final JwtTokenGenerator jwtTokenGenerator;
 
     public AccessTokenDto login(LoginData request) {
         try {
@@ -20,9 +21,12 @@ public class LoginService {
             Authentication authenticate = authenticationManager.authenticate(token);
 
             CustomUserDetails userDetails = (CustomUserDetails) authenticate.getPrincipal();
+            String jwtToken = jwtTokenGenerator.create(userDetails.getUsername());
+
 
             System.out.println(userDetails.getUsername());
-            // TODO 02. JWT 생성 - Payload 에 이메일과 만료 시간 추가 후 생성 하기
+            System.out.println(jwtToken);
+
             // TODO 03. 토큰을 Dto 로 반환 하기
 
             return null;
