@@ -58,6 +58,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
         } catch (AccessDeniedException e) {
+            System.out.println("asdasdasdasd");
             throw new HttpException(e.getMessage(), HttpStatus.FORBIDDEN);
         }
     }
