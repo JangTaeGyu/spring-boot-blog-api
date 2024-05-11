@@ -19,6 +19,8 @@ public class LoginService {
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
             Authentication authenticate = authenticationManager.authenticate(token);
 
+            CustomUserDetails userDetails = (CustomUserDetails) authenticate.getPrincipal();
+
             // TODO 01. User 이메일 특정 하기
             // TODO 02. JWT 생성 - Payload 에 이메일과 만료 시간 추가 후 생성 하기
             // TODO 03. 토큰을 Dto 로 반환 하기
