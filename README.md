@@ -47,4 +47,13 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgresPlusDialec
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.jpa.open-in-view=false
+
+# jwt
+app.jwt-secret=
+app.jwt-expiration-date=
+
+# admin
+admin.email=
+admin.password=
+admin.name=
 ```
