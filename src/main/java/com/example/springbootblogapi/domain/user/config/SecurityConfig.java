@@ -2,6 +2,7 @@ package com.example.springbootblogapi.domain.user.config;
 
 import com.example.springbootblogapi.domain.user.JwtAuthenticationEntryPoint;
 import com.example.springbootblogapi.domain.user.JwtAuthenticationFilter;
+import com.example.springbootblogapi.domain.user.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +39,7 @@ public class SecurityConfig {
                 .authorizeRequests(auth -> auth
                         .antMatchers("/health").permitAll()
                         .antMatchers("/api/login").permitAll()
+                        .antMatchers("/api/admin/**").hasAuthority(UserRole.ADMIN.name()) // ADMIN 권한만 접근 가능
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
