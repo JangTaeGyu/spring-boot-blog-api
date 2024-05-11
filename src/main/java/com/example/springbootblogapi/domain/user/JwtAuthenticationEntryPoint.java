@@ -1,5 +1,9 @@
 package com.example.springbootblogapi.domain.user;
 
+import com.example.springbootblogapi.controller.response.ErrorResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -10,10 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
+@RequiredArgsConstructor
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+    private final ObjectMapper objectMapper;
+
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        System.out.println("JwtAuthenticationEntryPoint");
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized: Authentication token was either missing or invalid.");
+    public void commence(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            AuthenticationException authException
+    ) throws IOException, ServletException {
+        ErrorResponse error = new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), request.getRequestURI(), "Unauthorized");
+
+        response.setContentType("application/json;charset=UTF-8");
+        response.setStatus(error.getStatus());
+        response.getWriter().println(objectMapper.writeValueAsString(error));
     }
 }
