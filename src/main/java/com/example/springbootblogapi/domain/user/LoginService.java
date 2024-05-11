@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LoginService {
     private final AuthenticationManager authenticationManager;
-    private final JwtTokenGenerator jwtTokenGenerator;
+    private final JwtTokenManager jwtTokenManager;
 
     private AccessTokenDto makeAccessTokenDto(Authentication authenticate) {
         CustomUserDetails userDetails = (CustomUserDetails) authenticate.getPrincipal();
-        String token = jwtTokenGenerator.create(userDetails.getUsername());
+        String token = jwtTokenManager.create(userDetails.getUsername());
 
-        return new AccessTokenDto(token, jwtTokenGenerator.expireTime(null));
+        return new AccessTokenDto(token, jwtTokenManager.expireTime(null));
     }
 
     public AccessTokenDto login(LoginData request) {

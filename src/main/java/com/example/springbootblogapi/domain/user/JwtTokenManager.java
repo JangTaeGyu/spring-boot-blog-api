@@ -13,13 +13,13 @@ import java.security.Key;
 import java.util.Date;
 
 @Component
-public class JwtTokenGenerator {
+public class JwtTokenManager {
     private static final String BLOG_ISSUER = "BLOG";
 
     private final String secret;
     private final Long expirationDate;
 
-    public JwtTokenGenerator(
+    public JwtTokenManager(
             @Value("${app.jwt-secret}") String secret,
             @Value("${app.jwt-expiration-date}") Long expirationDate
     ) {
