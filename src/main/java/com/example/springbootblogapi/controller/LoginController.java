@@ -1,6 +1,7 @@
 package com.example.springbootblogapi.controller;
 
 import com.example.springbootblogapi.controller.request.LoginRequest;
+import com.example.springbootblogapi.controller.response.SuccessfulResponse;
 import com.example.springbootblogapi.domain.user.LoginService;
 import com.example.springbootblogapi.domain.user.dto.AccessTokenDto;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class LoginController {
     @PostMapping
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequest request) {
         AccessTokenDto token = loginService.login(request.toData());
-        return ResponseEntity.ok(token);
+        SuccessfulResponse<AccessTokenDto> response = new SuccessfulResponse<>(token);
+        return ResponseEntity.ok(response);
     }
 }
