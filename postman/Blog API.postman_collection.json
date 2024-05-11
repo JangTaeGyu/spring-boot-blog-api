@@ -1,0 +1,477 @@
+{
+	"info": {
+		"_postman_id": "0894d11e-31b5-49c3-a497-beac029bbf63",
+		"name": "Blog API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2237733"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "Fetch Category List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_PATH}}/categories",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"TEST\",\n    \"description\": \"TEEST\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ADMIN_PATH}}/categories",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"test category 01\",\n    \"description\": \"text description 01\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ADMIN_PATH}}/categories/1",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"categories",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Enable Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ids\": [2]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ADMIN_PATH}}/categories/1/enable",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"categories",
+										"1",
+										"enable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Disable Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ids\": [2]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ADMIN_PATH}}/categories/1/disable",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"categories",
+										"1",
+										"disable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ids\": [2]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ADMIN_PATH}}/categories/sort",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"categories",
+										"sort"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Post",
+					"item": [
+						{
+							"name": "Search Post",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_PATH}}/posts?categoryId=&show&keyword=",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "categoryId",
+											"value": ""
+										},
+										{
+											"key": "show",
+											"value": null
+										},
+										{
+											"key": "keyword",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Post",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"categoryId\": 2,\n    \"title\": \"asdasds\",\n    \"body\": \"asdasdasdasdasd\",\n    \"tagNames\": [\n        \"PHP\",\n        \"Laravel\",\n        \"Java\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ADMIN_PATH}}/posts",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch Post",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_PATH}}/posts/2",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"posts",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Post",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"categoryId\": 2,\n    \"title\": \"blog title 01 - 01\",\n    \"body\": \"blog body 01\",\n    \"tagNames\": [\n        \n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ADMIN_PATH}}/posts/1",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"posts",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Enable Post",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_PATH}}/posts/1/enable",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"posts",
+										"1",
+										"enable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Disable Post",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_PATH}}/posts/1/disable",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"posts",
+										"1",
+										"disable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Post",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"categoryId\": 1,\n    \"title\": \"blog title 01\",\n    \"body\": \"blog body 01\",\n    \"tagNames\": [\n        \"JAVA 17\",\n        \"Spring Boot 2.7\",\n        \"Maven\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{ADMIN_PATH}}/posts/1",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"posts",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Comment",
+					"item": [
+						{
+							"name": "Search Comment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_PATH}}/comments",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"comments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Enable Comment",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_PATH}}/comments/1/enable",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"comments",
+										"1",
+										"enable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Disable Comment",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{ADMIN_PATH}}/comments/1/disable",
+									"host": [
+										"{{ADMIN_PATH}}"
+									],
+									"path": [
+										"comments",
+										"1",
+										"disable"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"ACCESS_TOKEN\", pm.response.json().data.accessToken)",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"cosmos\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/login",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DOMAIN}}/health",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
