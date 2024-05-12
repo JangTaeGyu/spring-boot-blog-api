@@ -29,6 +29,11 @@ public class UserRepositoryImpl implements UserRepository {
         return userRepository.findByEmail(email);
     }
 
+    @Override
+    public Optional<User> findById(Long userId) {
+        return userRepository.findById(userId);
+    }
+
     @Transactional
     @Override
     public Long create(User user) {

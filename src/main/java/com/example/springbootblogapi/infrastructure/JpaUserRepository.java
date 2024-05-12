@@ -12,5 +12,8 @@ public interface JpaUserRepository extends Repository<User, Long> {
     @Query(value = "select u from User u where u.email = :email and u.deletedAt is null")
     Optional<User> findByEmail(String email);
 
+    @Query(value = "select u from User u where u.id = :id and u.deletedAt is null")
+    Optional<User> findById(Long id);
+
     User save(User user);
 }
