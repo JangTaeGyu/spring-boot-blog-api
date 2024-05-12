@@ -11,9 +11,9 @@ public class UserCreator {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public void createUser(UserCreateData data) {
+    public Long createUser(UserCreateData data) {
         data.checkMatchPassword();
         User user = data.toEntity(passwordEncoder.encode(data.getPassword()), UserRole.ADMIN);
-        userRepository.create(user);
+        return userRepository.create(user);
     }
 }

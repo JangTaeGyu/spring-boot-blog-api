@@ -31,8 +31,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Transactional
     @Override
-    public void create(User user) {
-        userRepository.save(user);
+    public Long create(User user) {
+        return userRepository.save(user).getId();
     }
 
     @Transactional
