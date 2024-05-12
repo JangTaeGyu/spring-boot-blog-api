@@ -25,6 +25,7 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private UserRole role;
 
+    private LocalDateTime latestAccessedAt;
     private LocalDateTime deletedAt;
 
     public User(String email, String password, String name, UserRole role) {
