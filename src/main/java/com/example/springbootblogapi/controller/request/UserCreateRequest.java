@@ -5,7 +5,7 @@ import com.example.springbootblogapi.domain.user.data.UserCreateData;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 public class UserCreateRequest {
@@ -21,7 +21,7 @@ public class UserCreateRequest {
     @NotBlank
     private String name;
 
-    @NotEmpty
+    @NotNull
     private UserRole role;
 
     public UserCreateData toData() {
