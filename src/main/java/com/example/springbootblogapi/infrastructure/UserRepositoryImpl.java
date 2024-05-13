@@ -44,6 +44,7 @@ public class UserRepositoryImpl implements UserRepository {
                         user.id,
                         user.email,
                         user.name,
+                        user.role,
                         user.latestAccessedAt,
                         user.createdAt,
                         user.updatedAt
