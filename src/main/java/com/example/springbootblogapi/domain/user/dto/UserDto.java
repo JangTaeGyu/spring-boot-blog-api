@@ -12,6 +12,7 @@ public class UserDto {
     private final String email;
     private final String name;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime latestAccessedAt;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
