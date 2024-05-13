@@ -19,7 +19,7 @@ public class UserCreator {
         }
 
         data.checkMatchPassword();
-        User user = data.toEntity(passwordEncoder.encode(data.getPassword()), UserRole.ADMIN);
+        User user = data.toEntity(passwordEncoder.encode(data.getPassword()));
         return userRepository.create(user);
     }
 }

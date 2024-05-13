@@ -12,17 +12,20 @@ public class UserCreateData {
     private final String password;
     private final String confirmPassword;
     private final String name;
+    private final UserRole role;
 
-    public UserCreateData(String email, String password, String confirmPassword, String name) {
+    public UserCreateData(String email, String password, String confirmPassword, String name, UserRole role) {
         Assert.notNull(email, "email not null");
         Assert.notNull(password, "password not null");
         Assert.notNull(confirmPassword, "confirmPassword not null");
         Assert.notNull(name, "name not null");
+        Assert.notNull(name, "role not null");
 
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.name = name;
+        this.role = role;
     }
 
     public void checkMatchPassword() {
@@ -31,7 +34,7 @@ public class UserCreateData {
         }
     }
 
-    public User toEntity(String encodedPassword, UserRole role) {
+    public User toEntity(String encodedPassword) {
         return new User(email, encodedPassword, name, role);
     }
 }
