@@ -15,6 +15,7 @@ public class UserService {
     private final UserQuery userQuery;
     private final UserCreator userCreator;
     private final UserUpdater userUpdater;
+    private final UserDeleter userDeleter;
 
     public Page<UserDto> searchUsersBy(UserSearchData searchData, Pageable pageable) {
         return userQuery.searchUsersBy(searchData, pageable);
@@ -26,5 +27,9 @@ public class UserService {
 
     public void updateUser(Long userId, UserUpdateData data) {
         userUpdater.updateUser(userId, data);
+    }
+
+    public void deleteUser(Long userId) {
+        userDeleter.deleteUser(userId);
     }
 }
