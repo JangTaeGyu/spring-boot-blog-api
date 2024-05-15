@@ -1,16 +1,20 @@
 package com.example.springbootblogapi.domain.comment;
 
+import com.example.springbootblogapi.domain.comment.dto.PostCommentDto;
 import com.example.springbootblogapi.domain.post.PostChecker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class PostCommentService {
     private final PostChecker postChecker;
-    private final CommentRepository commentRepository;
+    private final CommentQuery commentQuery;
 
-    public void getTopLevelCategories(Long postId) {
+    public List<PostCommentDto> getTopLevelCategories(Long postId) {
         postChecker.checkExistence(postId);
+        return commentQuery.getTopLevelCategories(postId);
     }
 }

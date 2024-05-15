@@ -5,7 +5,9 @@ import com.example.springbootblogapi.domain.comment.CommentRepository;
 import com.example.springbootblogapi.domain.comment.QComment;
 import com.example.springbootblogapi.domain.comment.data.CommentSearchData;
 import com.example.springbootblogapi.domain.comment.dto.CommentDto;
+import com.example.springbootblogapi.domain.comment.dto.PostCommentDto;
 import com.example.springbootblogapi.domain.comment.dto.QCommentDto;
+import com.example.springbootblogapi.domain.comment.dto.QPostCommentDto;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -75,6 +77,24 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
+    public List<PostCommentDto> findAllByPostIdAndTopLevel(Long postId) {
+        return query.select(new QPostCommentDto(
+                        comment.id,
+                        comment.body,
+                        comment.createdAt,
+                        comment.updatedAt
+                ))
+                .from(comment)
+                .where(
+                        comment.parentId.isNull(),
+                        eqShow(true),
+                        eqPostId(postId)
+                )
+                .orderBy(comment.createdAt.desc())
+                .fetch();
+    }
+
+    @Override
     public Optional<Comment> findById(Long commentId) {
         return commentRepository.findById(commentId);
     }
@@ -87,5 +107,10 @@ public class CommentRepositoryImpl implements CommentRepository {
     public BooleanExpression containsKeyword(String keyword) {
         if (keyword == null || keyword.isEmpty()) return null;
         return comment.body.contains(keyword);
+    }
+
+    public BooleanExpression eqPostId(Long postId) {
+        if (postId == null) return null;
+        return comment.postId.eq(postId);
     }
 }
