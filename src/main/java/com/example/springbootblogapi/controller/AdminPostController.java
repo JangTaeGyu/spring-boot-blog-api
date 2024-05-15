@@ -12,7 +12,6 @@ import com.example.springbootblogapi.support.data.PaginatedData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +34,7 @@ public class AdminPostController {
             @RequestParam(defaultValue = PageConstant.DEFAULT_PER_PAGE, required = false) int perPage
     ) {
         PostSearchData request = new PostSearchData(categoryId, show, keyword);
-        Pageable pageable = PageRequest.of(page, perPage);
-        Page<PostDto> pagePost = postService.searchPostsBy(request, pageable);
+        Page<PostDto> pagePost = postService.searchPostsBy(request, PageRequest.of(page, perPage));
         PaginationResponse<List<PostDto>> response = new PaginationResponse<>(pagePost.getContent(), PaginatedData.of(pagePost));
         return ResponseEntity.ok(response);
     }
