@@ -19,6 +19,7 @@ public class PostCommentService {
     }
 
     public List<PostCommentDto> getReplyPostComments(Long postId, Long commentId) {
+        postChecker.checkExistence(postId);
         return commentQuery.getReplyPostComments(postId, commentId);
     }
 }
