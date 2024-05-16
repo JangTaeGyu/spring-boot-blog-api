@@ -95,6 +95,24 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
+    public List<PostCommentDto> findAllPostCommentsByPostIdAndParentId(Long postId, Long parentId) {
+        return query.select(new QPostCommentDto(
+                        comment.id,
+                        comment.body,
+                        comment.createdAt,
+                        comment.updatedAt
+                ))
+                .from(comment)
+                .where(
+                        eqShow(true),
+                        eqPostId(postId),
+                        eqParentId(parentId)
+                )
+                .orderBy(comment.createdAt.desc())
+                .fetch();
+    }
+
+    @Override
     public Optional<Comment> findById(Long commentId) {
         return commentRepository.findById(commentId);
     }
@@ -112,5 +130,10 @@ public class CommentRepositoryImpl implements CommentRepository {
     public BooleanExpression eqPostId(Long postId) {
         if (postId == null) return null;
         return comment.postId.eq(postId);
+    }
+
+    public BooleanExpression eqParentId(Long parentId) {
+        if (parentId == null) return null;
+        return comment.parentId.eq(parentId);
     }
 }

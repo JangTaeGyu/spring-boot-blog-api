@@ -22,4 +22,8 @@ public class CommentQuery {
     public List<PostCommentDto> getPostComments(Long postId) {
         return commentRepository.findAllPostCommentsByPostId(postId);
     }
+
+    public List<PostCommentDto> getReplyPostComments(Long postId, Long commentId) {
+        return commentRepository.findAllPostCommentsByPostIdAndParentId(postId, commentId);
+    }
 }

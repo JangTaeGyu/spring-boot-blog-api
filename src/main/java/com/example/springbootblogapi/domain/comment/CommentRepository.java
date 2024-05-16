@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface CommentRepository {
     Page<CommentDto> searchCommentsBy(CommentSearchData searchData, Pageable pageable);
     List<PostCommentDto> findAllPostCommentsByPostId(Long postId);
+    List<PostCommentDto> findAllPostCommentsByPostIdAndParentId(Long postId, Long parentId);
     Optional<Comment> findById(Long commentId);
 }
