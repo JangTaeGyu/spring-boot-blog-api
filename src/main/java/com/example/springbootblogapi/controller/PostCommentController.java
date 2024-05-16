@@ -20,7 +20,7 @@ public class PostCommentController {
 
     @GetMapping
     public ResponseEntity<?> index(@PathVariable Long postId) {
-        List<PostCommentDto> comments = postCommentService.getTopLevelCategories(postId);
+        List<PostCommentDto> comments = postCommentService.getPostComments(postId);
         SuccessfulResponse<List<PostCommentDto>> response = new SuccessfulResponse<>(comments);
         return ResponseEntity.ok(response);
     }

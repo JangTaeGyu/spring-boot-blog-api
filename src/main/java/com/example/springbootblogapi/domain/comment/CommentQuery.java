@@ -19,7 +19,7 @@ public class CommentQuery {
         return commentRepository.searchCommentsBy(request, pageable);
     }
 
-    public List<PostCommentDto> getTopLevelCategories(Long postId) {
-        return commentRepository.findAllByPostIdAndTopLevel(postId);
+    public List<PostCommentDto> getPostComments(Long postId) {
+        return commentRepository.findAllPostCommentsByPostId(postId);
     }
 }

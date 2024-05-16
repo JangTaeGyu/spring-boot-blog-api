@@ -13,8 +13,8 @@ public class PostCommentService {
     private final PostChecker postChecker;
     private final CommentQuery commentQuery;
 
-    public List<PostCommentDto> getTopLevelCategories(Long postId) {
+    public List<PostCommentDto> getPostComments(Long postId) {
         postChecker.checkExistence(postId);
-        return commentQuery.getTopLevelCategories(postId);
+        return commentQuery.getPostComments(postId);
     }
 }

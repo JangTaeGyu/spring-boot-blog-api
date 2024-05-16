@@ -77,7 +77,7 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
-    public List<PostCommentDto> findAllByPostIdAndTopLevel(Long postId) {
+    public List<PostCommentDto> findAllPostCommentsByPostId(Long postId) {
         return query.select(new QPostCommentDto(
                         comment.id,
                         comment.body,
