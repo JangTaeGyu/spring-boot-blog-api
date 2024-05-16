@@ -9,10 +9,7 @@ import java.util.Optional;
 
 public interface PostRepository {
     Page<PostDto> searchBy(PostSearchData searchData, Pageable pageable);
-
     Long create(Post post);
-
     Optional<Post> findById(Long postId);
-
     Optional<PostDto> findPostById(Long postId);
 }
