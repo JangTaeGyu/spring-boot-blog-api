@@ -24,4 +24,11 @@ public class PostCommentController {
         SuccessfulResponse<List<PostCommentDto>> response = new SuccessfulResponse<>(comments);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/{commentId}/replies")
+    public ResponseEntity<?> replies(@PathVariable Long postId, @PathVariable Long commentId) {
+        List<PostCommentDto> comments = postCommentService.getReplyPostComments(postId, commentId);
+        SuccessfulResponse<List<PostCommentDto>> response = new SuccessfulResponse<>(comments);
+        return ResponseEntity.ok(response);
+    }
 }
