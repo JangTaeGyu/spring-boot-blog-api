@@ -3,7 +3,6 @@ package com.example.springbootblogapi.domain.comment;
 import com.example.springbootblogapi.domain.comment.data.CommentData;
 import com.example.springbootblogapi.domain.comment.dto.PostCommentDto;
 import com.example.springbootblogapi.domain.post.PostChecker;
-import com.example.springbootblogapi.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,8 @@ public class PostCommentService {
         return commentQuery.getReplyPostComments(postId, commentId);
     }
 
-    public void createPostComment(User user, Long postId, CommentData data) {
-        commentCreator.createComment(user.getId(), postId, data);
+    public void createPostComment(Long postId, CommentData data) {
+        postChecker.checkExistence(postId);
+        commentCreator.createComment(postId, data);
     }
 }

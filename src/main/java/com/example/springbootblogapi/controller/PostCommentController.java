@@ -1,12 +1,17 @@
 package com.example.springbootblogapi.controller;
 
+import com.example.springbootblogapi.controller.annotation.LoggedInUser;
+import com.example.springbootblogapi.controller.request.CommentInputRequest;
 import com.example.springbootblogapi.controller.response.SuccessfulResponse;
 import com.example.springbootblogapi.domain.comment.PostCommentService;
 import com.example.springbootblogapi.domain.comment.dto.PostCommentDto;
+import com.example.springbootblogapi.domain.user.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,5 +32,15 @@ public class PostCommentController {
         List<PostCommentDto> comments = postCommentService.getReplyPostComments(postId, commentId);
         SuccessfulResponse<List<PostCommentDto>> response = new SuccessfulResponse<>(comments);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> create(
+            @LoggedInUser User user,
+            @PathVariable Long postId,
+            @RequestBody @Valid CommentInputRequest request
+    ) {
+        postCommentService.createPostComment(postId, request.toData(user.getId()));
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 }

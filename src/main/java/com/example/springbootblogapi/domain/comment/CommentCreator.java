@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 public class CommentCreator {
     private final CommentRepository commentRepository;
 
-    public void createComment(Long userId, Long postId, CommentData data) {
-        Comment comment = data.toEntity(postId, userId);
+    public void createComment(Long postId, CommentData data) {
+        Comment comment = data.toEntity(postId);
+        commentRepository.create(comment);
     }
 }
