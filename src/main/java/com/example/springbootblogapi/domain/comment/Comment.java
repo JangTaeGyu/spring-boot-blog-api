@@ -27,6 +27,13 @@ public class Comment extends BaseEntity {
 
     private Long userId;
 
+    public Comment(String body, Long postId, Long parentId, Long userId) {
+        this.body = body;
+        this.postId = postId;
+        this.parentId = parentId;
+        this.userId = userId;
+    }
+
     public void changeShow(boolean show) {
         this.show = show;
     }

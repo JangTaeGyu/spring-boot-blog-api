@@ -117,6 +117,12 @@ public class CommentRepositoryImpl implements CommentRepository {
         return commentRepository.findById(commentId);
     }
 
+    @Transactional
+    @Override
+    public void create(Comment comment) {
+        commentRepository.save(comment);
+    }
+
     public BooleanExpression eqShow(Boolean show) {
         if (show == null) return null;
         return comment.show.eq(show);
