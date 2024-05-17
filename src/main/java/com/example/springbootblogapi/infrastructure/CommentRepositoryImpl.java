@@ -9,7 +9,9 @@ import com.example.springbootblogapi.domain.comment.dto.PostCommentDto;
 import com.example.springbootblogapi.domain.comment.dto.QCommentDto;
 import com.example.springbootblogapi.domain.comment.dto.QPostCommentDto;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.springbootblogapi.domain.post.QPost.post;
 import static com.example.springbootblogapi.domain.comment.QComment.comment;
+import static com.example.springbootblogapi.domain.post.QPost.post;
 import static com.example.springbootblogapi.domain.user.QUser.user;
 
 @Repository
@@ -51,11 +53,21 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     private QPostCommentDto selectPostCommentFields() {
+        QComment replyComment = new QComment("replyComment");
+
         return new QPostCommentDto(
                 comment.id,
                 comment.body,
                 comment.createdAt,
                 comment.updatedAt,
+                ExpressionUtils.as(
+                        JPAExpressions.select(replyComment.count())
+                                .from(replyComment)
+                                .where(
+                                        post.deletedAt.isNull(),
+                                        replyComment.parentId.eq(comment.id)
+                                ), "countOfComments"
+                ),
                 user.id,
                 user.email,
                 user.name

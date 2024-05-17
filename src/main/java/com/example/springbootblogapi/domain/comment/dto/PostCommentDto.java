@@ -17,6 +17,8 @@ public class PostCommentDto {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime updatedAt;
 
+    private final Long countOfComments;
+
     private final CommentUser writer;
 
     @Getter
@@ -38,6 +40,7 @@ public class PostCommentDto {
             String body,
             LocalDateTime createdAt,
             LocalDateTime updatedAt,
+            Long countOfComments,
             Long userId,
             String userEmail,
             String userName
@@ -46,6 +49,7 @@ public class PostCommentDto {
         this.body = body;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.countOfComments = countOfComments;
         this.writer = new CommentUser(userId, userEmail, userName);
     }
 }
