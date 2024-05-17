@@ -64,7 +64,7 @@ public class CommentRepositoryImpl implements CommentRepository {
                         JPAExpressions.select(replyComment.count())
                                 .from(replyComment)
                                 .where(
-                                        post.deletedAt.isNull(),
+                                        replyComment.show.eq(true),
                                         replyComment.parentId.eq(comment.id)
                                 ), "countOfComments"
                 ),
@@ -105,6 +105,7 @@ public class CommentRepositoryImpl implements CommentRepository {
     public List<PostCommentDto> findAllPostCommentsByPostId(Long postId) {
         return query.select(selectPostCommentFields())
                 .from(comment)
+                .innerJoin(user).on(comment.userId.eq(user.id))
                 .where(
                         comment.parentId.isNull(),
                         eqShow(true),
@@ -118,6 +119,7 @@ public class CommentRepositoryImpl implements CommentRepository {
     public List<PostCommentDto> findAllPostCommentsByPostIdAndParentId(Long postId, Long parentId) {
         return query.select(selectPostCommentFields())
                 .from(comment)
+                .innerJoin(user).on(comment.userId.eq(user.id))
                 .where(
                         eqShow(true),
                         eqPostId(postId),
