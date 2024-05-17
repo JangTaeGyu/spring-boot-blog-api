@@ -24,6 +24,7 @@ import java.util.Optional;
 
 import static com.example.springbootblogapi.domain.post.QPost.post;
 import static com.example.springbootblogapi.domain.comment.QComment.comment;
+import static com.example.springbootblogapi.domain.user.QUser.user;
 
 @Repository
 @Transactional(readOnly = true)
@@ -46,6 +47,18 @@ public class CommentRepositoryImpl implements CommentRepository {
                 parentComment.id,
                 parentComment.body,
                 parentComment.show
+        );
+    }
+
+    private QPostCommentDto selectPostCommentFields() {
+        return new QPostCommentDto(
+                comment.id,
+                comment.body,
+                comment.createdAt,
+                comment.updatedAt,
+                user.id,
+                user.email,
+                user.name
         );
     }
 
@@ -78,12 +91,7 @@ public class CommentRepositoryImpl implements CommentRepository {
 
     @Override
     public List<PostCommentDto> findAllPostCommentsByPostId(Long postId) {
-        return query.select(new QPostCommentDto(
-                        comment.id,
-                        comment.body,
-                        comment.createdAt,
-                        comment.updatedAt
-                ))
+        return query.select(selectPostCommentFields())
                 .from(comment)
                 .where(
                         comment.parentId.isNull(),
@@ -96,12 +104,7 @@ public class CommentRepositoryImpl implements CommentRepository {
 
     @Override
     public List<PostCommentDto> findAllPostCommentsByPostIdAndParentId(Long postId, Long parentId) {
-        return query.select(new QPostCommentDto(
-                        comment.id,
-                        comment.body,
-                        comment.createdAt,
-                        comment.updatedAt
-                ))
+        return query.select(selectPostCommentFields())
                 .from(comment)
                 .where(
                         eqShow(true),

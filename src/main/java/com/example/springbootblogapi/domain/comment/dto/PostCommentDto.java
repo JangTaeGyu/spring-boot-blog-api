@@ -17,11 +17,35 @@ public class PostCommentDto {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime updatedAt;
 
+    private final CommentUser writer;
+
+    @Getter
+    private static class CommentUser {
+        private final Long id;
+        private final String email;
+        private final String name;
+
+        public CommentUser(Long id, String email, String name) {
+            this.id = id;
+            this.email = email;
+            this.name = name;
+        }
+    }
+
     @QueryProjection
-    public PostCommentDto(Long id, String body, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public PostCommentDto(
+            Long id,
+            String body,
+            LocalDateTime createdAt,
+            LocalDateTime updatedAt,
+            Long userId,
+            String userEmail,
+            String userName
+    ) {
         this.id = id;
         this.body = body;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.writer = new CommentUser(userId, userEmail, userName);
     }
 }
