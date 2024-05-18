@@ -823,7 +823,7 @@
 							"response": []
 						},
 						{
-							"name": "\bFetch Comment List Copy",
+							"name": "\bFetch Repl\by Comment List",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -888,6 +888,46 @@
 										"posts",
 										"10",
 										"comments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Comment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"body\": \"댓글 입력 합니다. 1230\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{DOMAIN}}/api/posts/10/comments/5",
+									"host": [
+										"{{DOMAIN}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"10",
+										"comments",
+										"5"
 									]
 								}
 							},
