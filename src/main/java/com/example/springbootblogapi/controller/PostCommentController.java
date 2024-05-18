@@ -5,7 +5,7 @@ import com.example.springbootblogapi.controller.request.CommentInputRequest;
 import com.example.springbootblogapi.controller.response.SuccessfulResponse;
 import com.example.springbootblogapi.domain.comment.PostCommentService;
 import com.example.springbootblogapi.domain.comment.dto.PostCommentDto;
-import com.example.springbootblogapi.domain.user.User;
+import com.example.springbootblogapi.domain.user.data.LoggedInUserData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,22 +36,22 @@ public class PostCommentController {
 
     @PostMapping
     public ResponseEntity<Void> create(
-            @LoggedInUser User user,
+            @LoggedInUser LoggedInUserData loggedInUserData,
             @PathVariable Long postId,
             @RequestBody @Valid CommentInputRequest request
     ) {
-        postCommentService.createPostComment(postId, request.toData(user.getId()));
+        postCommentService.createPostComment(postId, request.toData(loggedInUserData.getId()));
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
     @PutMapping("/{commentId}")
     public ResponseEntity<Void> update(
-            @LoggedInUser User user,
+            @LoggedInUser LoggedInUserData loggedInUserData,
             @PathVariable Long postId,
             @PathVariable Long commentId,
             @RequestBody @Valid CommentInputRequest request
     ) {
-        postCommentService.updatePostComment(postId, commentId, request.toData(user.getId()));
+        postCommentService.updatePostComment(postId, commentId, request.toData(loggedInUserData.getId()));
         return ResponseEntity.ok(null);
     }
 }
