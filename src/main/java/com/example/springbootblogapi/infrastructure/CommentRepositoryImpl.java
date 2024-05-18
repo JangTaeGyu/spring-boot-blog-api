@@ -134,6 +134,11 @@ public class CommentRepositoryImpl implements CommentRepository {
         return commentRepository.findById(commentId);
     }
 
+    @Override
+    public Optional<Comment> findByIdAndPostId(Long commentId, Long postId) {
+        return commentRepository.findByIdAndPostId(commentId, postId);
+    }
+
     @Transactional
     @Override
     public void create(Comment comment) {

@@ -1,6 +1,8 @@
 package com.example.springbootblogapi.domain.comment;
 
+import com.example.springbootblogapi.domain.comment.data.CommentData;
 import com.example.springbootblogapi.domain.comment.exception.CommentNotFoundException;
+import com.example.springbootblogapi.domain.comment.exception.UnauthorizedUserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +11,21 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class CommentUpdater {
     private final CommentRepository commentRepository;
+
+    private void verifyCommentWriter(Comment comment, Long userId) {
+        if (!comment.getUserId().equals(userId)) {
+            throw new UnauthorizedUserException();
+        }
+    }
+
+    @Transactional
+    public void updateComment(Long postId, Long commentId, CommentData data) {
+        Comment comment = commentRepository.findByIdAndPostId(commentId, postId)
+                .orElseThrow(() -> new CommentNotFoundException("commentId", commentId));
+
+        verifyCommentWriter(comment, data.getUserId());
+        comment.update(data.getBody());
+    }
 
     @Transactional
     public void setCommentVisibility(Long commentId, boolean show) {

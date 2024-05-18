@@ -14,5 +14,6 @@ public interface CommentRepository {
     List<PostCommentDto> findAllPostCommentsByPostId(Long postId);
     List<PostCommentDto> findAllPostCommentsByPostIdAndParentId(Long postId, Long parentId);
     Optional<Comment> findById(Long commentId);
+    Optional<Comment> findByIdAndPostId(Long commentId, Long postId);
     void create(Comment comment);
 }

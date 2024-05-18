@@ -38,4 +38,8 @@ public class Comment extends BaseEntity {
     public void changeShow(boolean show) {
         this.show = show;
     }
+
+    public void update(String body) {
+        this.body = body;
+    }
 }
