@@ -43,4 +43,15 @@ public class PostCommentController {
         postCommentService.createPostComment(postId, request.toData(user.getId()));
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
+
+    @PutMapping("/{commentId}")
+    public ResponseEntity<Void> update(
+            @LoggedInUser User user,
+            @PathVariable Long postId,
+            @PathVariable Long commentId,
+            @RequestBody @Valid CommentInputRequest request
+    ) {
+        postCommentService.updatePostComment(postId, commentId, request.toData(user.getId()));
+        return ResponseEntity.ok(null);
+    }
 }
