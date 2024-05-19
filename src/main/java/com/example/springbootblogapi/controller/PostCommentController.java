@@ -54,4 +54,14 @@ public class PostCommentController {
         postCommentService.updatePostComment(postId, commentId, request.toData(loggedInUserData.getId()));
         return ResponseEntity.ok(null);
     }
+
+    @DeleteMapping("/{commentId}")
+    public ResponseEntity<Void> delete(
+            @LoggedInUser LoggedInUserData loggedInUserData,
+            @PathVariable Long postId,
+            @PathVariable Long commentId
+    ) {
+        postCommentService.deletePostComment(postId, commentId, loggedInUserData.getId());
+        return ResponseEntity.noContent().build();
+    }
 }
