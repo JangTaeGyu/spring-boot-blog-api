@@ -15,6 +15,7 @@ public class PostCommentService {
     private final CommentQuery commentQuery;
     private final CommentCreator commentCreator;
     private final CommentUpdater commentUpdater;
+    private final CommentDeleter commentDeleter;
 
     public List<PostCommentDto> getPostComments(Long postId) {
         postChecker.checkExistence(postId);
@@ -34,5 +35,10 @@ public class PostCommentService {
     public void updatePostComment(Long postId, Long commentId, CommentData data) {
         postChecker.checkExistence(postId);
         commentUpdater.updateComment(postId, commentId, data);
+    }
+
+    public void deletePostComment(Long postId, Long commentId) {
+        postChecker.checkExistence(postId);
+        commentDeleter.deleteComment(postId, commentId);
     }
 }
