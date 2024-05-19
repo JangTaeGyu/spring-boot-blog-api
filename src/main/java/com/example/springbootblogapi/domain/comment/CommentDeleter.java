@@ -11,9 +11,11 @@ public class CommentDeleter {
     private final CommentRepository commentRepository;
 
     @Transactional
-    public void deleteComment(Long postId, Long commentId) {
-        commentRepository.findByIdAndPostId(commentId, postId)
-                .orElseThrow(() -> new CommentNotFoundException("commentId", commentId))
-                .delete();
+    public void deleteComment(Long postId, Long commentId, Long userId) {
+        Comment comment = commentRepository.findByIdAndPostId(commentId, postId)
+                .orElseThrow(() -> new CommentNotFoundException("commentId", commentId));
+
+        comment.verifyWriter(userId);
+        comment.delete();
     }
 }

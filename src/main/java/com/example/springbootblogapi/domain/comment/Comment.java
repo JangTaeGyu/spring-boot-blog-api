@@ -1,6 +1,7 @@
 package com.example.springbootblogapi.domain.comment;
 
 import com.example.springbootblogapi.domain.BaseEntity;
+import com.example.springbootblogapi.domain.comment.exception.UnauthorizedUserException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,5 +47,11 @@ public class Comment extends BaseEntity {
 
     public void delete() {
         this.deletedAt = LocalDateTime.now();
+    }
+
+    public void verifyWriter(Long userId) {
+        if (!this.getUserId().equals(userId)) {
+            throw new UnauthorizedUserException();
+        }
     }
 }

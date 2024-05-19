@@ -37,8 +37,8 @@ public class PostCommentService {
         commentUpdater.updateComment(postId, commentId, data);
     }
 
-    public void deletePostComment(Long postId, Long commentId) {
+    public void deletePostComment(Long postId, Long commentId, Long userId) {
         postChecker.checkExistence(postId);
-        commentDeleter.deleteComment(postId, commentId);
+        commentDeleter.deleteComment(postId, commentId, userId);
     }
 }
