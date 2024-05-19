@@ -9,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comments")
@@ -24,8 +25,8 @@ public class Comment extends BaseEntity {
     private Long postId;
 
     private Long parentId;
-
     private Long userId;
+    private LocalDateTime deletedAt;
 
     public Comment(String body, Long postId, Long parentId, Long userId) {
         this.body = body;
