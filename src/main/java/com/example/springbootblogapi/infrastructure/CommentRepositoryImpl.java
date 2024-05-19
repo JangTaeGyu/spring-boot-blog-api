@@ -75,7 +75,8 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     private BooleanBuilder toBooleanBuilder(CommentSearchData commentSearchData) {
-        return new BooleanBuilder(eqShow(commentSearchData.getShow()))
+        return new BooleanBuilder(comment.deletedAt.isNull())
+                .and(eqShow(commentSearchData.getShow()))
                 .and(containsKeyword(commentSearchData.getKeyword()));
     }
 
@@ -107,6 +108,7 @@ public class CommentRepositoryImpl implements CommentRepository {
                 .from(comment)
                 .innerJoin(user).on(comment.userId.eq(user.id))
                 .where(
+                        comment.deletedAt.isNull(),
                         comment.parentId.isNull(),
                         eqShow(true),
                         eqPostId(postId)
@@ -121,6 +123,7 @@ public class CommentRepositoryImpl implements CommentRepository {
                 .from(comment)
                 .innerJoin(user).on(comment.userId.eq(user.id))
                 .where(
+                        comment.deletedAt.isNull(),
                         eqShow(true),
                         eqPostId(postId),
                         eqParentId(parentId)
