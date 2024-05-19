@@ -932,6 +932,37 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "\bDelete Comment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{DOMAIN}}/api/posts/10/comments/5",
+									"host": [
+										"{{DOMAIN}}"
+									],
+									"path": [
+										"api",
+										"posts",
+										"10",
+										"comments",
+										"5"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
