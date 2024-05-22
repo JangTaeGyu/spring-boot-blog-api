@@ -13,7 +13,7 @@ public class TestPostContainer {
         TestCategoryContainer categoryContainer = new TestCategoryContainer();
 
         this.postRepository = new FakePostRepository();
-        this.postQuery = new PostQuery(this.postRepository);
-        this.postCreator = new PostCreator(this.postRepository);
+        this.postQuery = new PostQuery(this.postRepository, null);
+        this.postCreator = new PostCreator(this.postRepository, null);
     }
 }

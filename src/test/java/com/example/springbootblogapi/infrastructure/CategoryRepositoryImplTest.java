@@ -1,12 +1,14 @@
-package com.example.springbootblogapi.domain.category;
+package com.example.springbootblogapi.infrastructure;
 
+import com.example.springbootblogapi.domain.category.Category;
+import com.example.springbootblogapi.domain.category.CategoryRepository;
 import com.example.springbootblogapi.domain.category.dto.CategoryDto;
+import com.example.springbootblogapi.infrastructure.core.TestRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
@@ -16,13 +18,12 @@ import java.util.Optional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-@SpringBootTest
-@TestPropertySource("classpath:application-test.properties")
+@Import(CategoryRepositoryImpl.class)
 @SqlGroup({
         @Sql(value = "/sql/category-repository-test-before.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD),
         @Sql(value = "/sql/delete-all.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 })
-class CategoryRepositoryTest {
+class CategoryRepositoryImplTest extends TestRepository {
     @Autowired
     private CategoryRepository categoryRepository;
 

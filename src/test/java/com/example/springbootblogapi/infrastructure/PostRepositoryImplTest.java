@@ -1,16 +1,18 @@
-package com.example.springbootblogapi.domain.post;
+package com.example.springbootblogapi.infrastructure;
 
+import com.example.springbootblogapi.domain.post.Post;
+import com.example.springbootblogapi.domain.post.PostRepository;
 import com.example.springbootblogapi.domain.post.data.PostSearchData;
 import com.example.springbootblogapi.domain.post.dto.PostDto;
+import com.example.springbootblogapi.infrastructure.core.TestRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
@@ -19,14 +21,13 @@ import java.util.Optional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-@SpringBootTest
-@TestPropertySource("classpath:application-test.properties")
+@Import(PostRepositoryImpl.class)
 @SqlGroup({
         @Sql(value = "/sql/category-repository-test-before.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD),
         @Sql(value = "/sql/post-repository-test-before.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD),
         @Sql(value = "/sql/delete-all.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 })
-class PostRepositoryTest {
+class PostRepositoryImplTest extends TestRepository {
     @Autowired
     private PostRepository postRepository;
 

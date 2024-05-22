@@ -45,4 +45,9 @@ public class FakePostRepository implements PostRepository {
     public Optional<Post> findById(Long postId) {
         return data.stream().filter(post -> post.getId().equals(postId)).findFirst();
     }
+
+    @Override
+    public Optional<PostDto> findPostById(Long postId) {
+        return Optional.empty();
+    }
 }
