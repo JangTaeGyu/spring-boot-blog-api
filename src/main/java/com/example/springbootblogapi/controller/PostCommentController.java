@@ -1,11 +1,11 @@
 package com.example.springbootblogapi.controller;
 
-import com.example.springbootblogapi.controller.annotation.LoggedInUser;
+import com.example.springbootblogapi.controller.annotation.VerifiedAccount;
 import com.example.springbootblogapi.controller.request.CommentInputRequest;
 import com.example.springbootblogapi.controller.response.SuccessfulResponse;
 import com.example.springbootblogapi.domain.comment.PostCommentService;
 import com.example.springbootblogapi.domain.comment.dto.PostCommentDto;
-import com.example.springbootblogapi.domain.user.data.LoggedInUserData;
+import com.example.springbootblogapi.domain.user.data.AccountData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,32 +36,32 @@ public class PostCommentController {
 
     @PostMapping
     public ResponseEntity<Void> create(
-            @LoggedInUser LoggedInUserData loggedInUserData,
+            @VerifiedAccount AccountData accountData,
             @PathVariable Long postId,
             @RequestBody @Valid CommentInputRequest request
     ) {
-        postCommentService.createPostComment(postId, request.toData(loggedInUserData.getId()));
+        postCommentService.createPostComment(postId, request.toData(accountData.getId()));
         return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
     @PutMapping("/{commentId}")
     public ResponseEntity<Void> update(
-            @LoggedInUser LoggedInUserData loggedInUserData,
+            @VerifiedAccount AccountData accountData,
             @PathVariable Long postId,
             @PathVariable Long commentId,
             @RequestBody @Valid CommentInputRequest request
     ) {
-        postCommentService.updatePostComment(postId, commentId, request.toData(loggedInUserData.getId()));
+        postCommentService.updatePostComment(postId, commentId, request.toData(accountData.getId()));
         return ResponseEntity.ok(null);
     }
 
     @DeleteMapping("/{commentId}")
     public ResponseEntity<Void> delete(
-            @LoggedInUser LoggedInUserData loggedInUserData,
+            @VerifiedAccount AccountData accountData,
             @PathVariable Long postId,
             @PathVariable Long commentId
     ) {
-        postCommentService.deletePostComment(postId, commentId, loggedInUserData.getId());
+        postCommentService.deletePostComment(postId, commentId, accountData.getId());
         return ResponseEntity.noContent().build();
     }
 }

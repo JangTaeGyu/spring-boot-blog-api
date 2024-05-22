@@ -4,13 +4,13 @@ import com.example.springbootblogapi.domain.user.UserRole;
 import lombok.Getter;
 
 @Getter
-public class LoggedInUserData {
+public class AccountData {
     private final Long id;
     private final String email;
     private final String name;
     private final UserRole role;
 
-    public LoggedInUserData(Long id, String email, String name, UserRole role) {
+    public AccountData(Long id, String email, String name, UserRole role) {
         this.id = id;
         this.email = email;
         this.name = name;

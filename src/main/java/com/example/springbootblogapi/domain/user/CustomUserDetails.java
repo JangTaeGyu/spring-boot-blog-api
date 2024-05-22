@@ -1,6 +1,6 @@
 package com.example.springbootblogapi.domain.user;
 
-import com.example.springbootblogapi.domain.user.data.LoggedInUserData;
+import com.example.springbootblogapi.domain.user.data.AccountData;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,11 +12,11 @@ import java.util.List;
 @Getter
 public class CustomUserDetails implements UserDetails {
     private final User user;
-    private final LoggedInUserData loggedInUserData;
+    private final AccountData accountData;
 
     public CustomUserDetails(User user) {
         this.user = user;
-        this.loggedInUserData = new LoggedInUserData(user.getId(), user.getEmail(), user.getName(), user.getRole());
+        this.accountData = new AccountData(user.getId(), user.getEmail(), user.getName(), user.getRole());
     }
 
     @Override
