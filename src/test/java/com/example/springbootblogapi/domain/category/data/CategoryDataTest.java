@@ -40,5 +40,6 @@ class CategoryDataTest {
         assertThat(category).isInstanceOf(Category.class);
         assertThat(category.getName()).isEqualTo(categoryName);
         assertThat(category.getDescription()).isEqualTo(categoryDescription);
+        assertThat(category.isShow()).isTrue();
     }
 }

@@ -14,7 +14,6 @@ public class CategoryService {
     private final CategoryQuery categoryQuery;
     private final CategoryCreator categoryCreator;
     private final CategoryUpdater categoryUpdater;
-    private final CategoryDeleter categoryDeleter;
 
     public List<CategoryDto> getAllSortedCategories() {
         return categoryQuery.getAllSortedCategories();
