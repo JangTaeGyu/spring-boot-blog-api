@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class CategoryQueryTest {
     private final CategoryQuery categoryQuery;
@@ -45,5 +46,21 @@ class CategoryQueryTest {
         assertThat(category.getId()).isEqualTo(categoryId);
         assertThat(category.getName()).isEqualTo("Category 03");
         assertThat(category.getDescription()).isEqualTo("Category Description 03");
+    }
+
+    @Test
+    @DisplayName("checkCategory - 카테고리 체크 오류 - CategoryNotFoundException")
+    public void checkCategory_CategoryNotFoundException() {
+        assertThatThrownBy(() -> {
+            categoryQuery.checkCategory(6L);
+        }).isInstanceOf(CategoryNotFoundException.class);
+    }
+
+    @Test
+    @DisplayName("checkCategory - 카테고리 체크")
+    public void checkCategory() {
+        assertDoesNotThrow(() -> {
+            categoryQuery.checkCategory(3L);
+        });
     }
 }
