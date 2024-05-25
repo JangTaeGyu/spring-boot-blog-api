@@ -51,6 +51,22 @@ class TagRepositoryImplTest extends TestRepository {
     }
 
     @Test
+    @DisplayName("findByName - 태그 조회")
     void findByName() {
+        Optional<Tag> result = tagRepository.findByName("Java 17");
+        assertThat(result.isPresent()).isTrue();
+
+        if (result.isPresent()) {
+            Tag foundTag = result.get();
+            assertThat(foundTag.getName()).isEqualTo("Java 17");
+        }
     }
+
+    @Test
+    @DisplayName("findByName - 태그 조회 - isEmpty")
+    void findByName_isEmpty() {
+        Optional<Tag> result = tagRepository.findByName("Java 8");
+        assertThat(result.isEmpty()).isTrue();
+    }
+
 }
