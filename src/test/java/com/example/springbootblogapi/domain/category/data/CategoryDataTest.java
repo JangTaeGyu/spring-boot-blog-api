@@ -8,16 +8,16 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class CategoryDataTest {
-    @DisplayName("createCategoryData - 카테고리 데이터 생성 오류 - IllegalArgumentException")
     @Test
+    @DisplayName("createCategoryData - 카테고리 데이터 생성 오류 - IllegalArgumentException")
     void createCategoryData_IllegalArgumentException() {
         assertThatThrownBy(() -> new CategoryData("", null)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new CategoryData(null, "")).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new CategoryData(null, null)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("createCategoryData - 카테고리 데이터 생성")
     @Test
+    @DisplayName("createCategoryData - 카테고리 데이터 생성")
     void createCategoryData() {
         String categoryName = "category name";
         String categoryDescription = "category description";
@@ -28,8 +28,8 @@ class CategoryDataTest {
         assertThat(data.getDescription()).isEqualTo(categoryDescription);
     }
 
-    @DisplayName("toEntity - CategoryData 에서 Category Entity 생성")
     @Test
+    @DisplayName("toEntity - CategoryData 에서 Category Entity 생성")
     void toEntity() {
         String categoryName = "category name";
         String categoryDescription = "category description";
