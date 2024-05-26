@@ -29,6 +29,6 @@ public class FakeTagRepository implements TagRepository {
 
     @Override
     public Optional<Tag> findByName(String tagName) {
-        return Optional.empty();
+        return data.stream().filter(tag -> tag.getName().equals(tagName)).findFirst();
     }
 }

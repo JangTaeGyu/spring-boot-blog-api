@@ -23,6 +23,12 @@ class TagCreatorTest {
     }
 
     @Test
+    @DisplayName("getOrCreateTagId - 태그 없으면 생성 또는 조회")
     void getOrCreateTagId() {
+        Long createdTagId01 = tagCreator.getOrCreateTagId("PHP");
+        assertThat(createdTagId01).isEqualTo(6L);
+
+        Long createdTagId02 = tagCreator.getOrCreateTagId("Java 17");
+        assertThat(createdTagId02).isEqualTo(1L);
     }
 }
