@@ -20,4 +20,11 @@ public class Tag {
     public Tag(String name) {
         this.name = name;
     }
+
+    public static Tag fakeEntity(Long id, String name) {
+        Tag tag = new Tag();
+        tag.id = id;
+        tag.name = name;
+        return  tag;
+    }
 }
