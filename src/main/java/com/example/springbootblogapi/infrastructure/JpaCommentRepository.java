@@ -12,5 +12,5 @@ public interface JpaCommentRepository extends Repository<Comment, Long> {
 
     @Query(value = "select c from Comment c where c.id = :id and c.postId = :postId and c.show = true and c.deletedAt is null")
     Optional<Comment> findByIdAndPostId(Long id, Long postId);
-    void save(Comment comment);
+    Comment save(Comment comment);
 }

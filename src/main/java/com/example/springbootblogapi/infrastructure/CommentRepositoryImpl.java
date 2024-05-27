@@ -144,8 +144,8 @@ public class CommentRepositoryImpl implements CommentRepository {
 
     @Transactional
     @Override
-    public void create(Comment comment) {
-        commentRepository.save(comment);
+    public Long create(Comment comment) {
+        return commentRepository.save(comment).getId();
     }
 
     public BooleanExpression eqShow(Boolean show) {
