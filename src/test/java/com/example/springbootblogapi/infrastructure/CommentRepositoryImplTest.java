@@ -1,5 +1,6 @@
 package com.example.springbootblogapi.infrastructure;
 
+import com.example.springbootblogapi.domain.category.Category;
 import com.example.springbootblogapi.domain.comment.Comment;
 import com.example.springbootblogapi.domain.comment.CommentRepository;
 import com.example.springbootblogapi.infrastructure.core.TestRepository;
@@ -26,6 +27,25 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 class CommentRepositoryImplTest extends TestRepository {
     @Autowired
     private CommentRepository commentRepository;
+
+    @Test
+    @DisplayName("findById - 댓글 조회")
+    void findById() {
+        Optional<Comment> result = commentRepository.findById(1L);
+        assertThat(result.isPresent()).isTrue();
+
+        if (result.isPresent()) {
+            Comment foundComment = result.get();
+            assertThat(foundComment.getId()).isEqualTo(1L);
+        }
+    }
+
+    @Test
+    @DisplayName("findById - 댓글 조회 - isEmpty")
+    void findById_isEmpty() {
+        Optional<Comment> result = commentRepository.findById(99L);
+        assertThat(result.isEmpty()).isTrue();
+    }
 
     @Test
     @DisplayName("create - 댓글 생성")
