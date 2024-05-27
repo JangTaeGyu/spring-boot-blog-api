@@ -7,12 +7,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 @Import(CommentRepositoryImpl.class)
 @SqlGroup({
@@ -42,5 +44,14 @@ class CommentRepositoryImplTest extends TestRepository {
             assertThat(comment.getParentId()).isNull();
             assertThat(comment.getUserId()).isNull();
         }
+    }
+
+    @Test
+    @DisplayName("create - 댓글 생성 오류 - DataIntegrityViolationException")
+    void create_DataIntegrityViolationException() {
+        assertThatThrownBy(() -> {
+            Comment comment = new Comment("Post 1, Comment 06", null, null, null);
+            commentRepository.create(comment);
+        }).isInstanceOf(DataIntegrityViolationException.class);
     }
 }
