@@ -48,6 +48,19 @@ class CommentRepositoryImplTest extends TestRepository {
     }
 
     @Test
+    @DisplayName("findById - 포스트 아이디로 댓글 조회")
+    void findByIdAndPostId() {
+        Optional<Comment> result = commentRepository.findByIdAndPostId(1L, 1L);
+        assertThat(result.isPresent()).isTrue();
+
+        if (result.isPresent()) {
+            Comment foundComment = result.get();
+            assertThat(foundComment.getId()).isEqualTo(1L);
+            assertThat(foundComment.getPostId()).isEqualTo(1L);
+        }
+    }
+
+    @Test
     @DisplayName("create - 댓글 생성")
     void create() {
         Comment comment = new Comment("Post 1, Comment 06", 1L, null, null);
