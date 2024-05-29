@@ -61,6 +61,13 @@ class CommentRepositoryImplTest extends TestRepository {
     }
 
     @Test
+    @DisplayName("findById - 포스트 아이디로 댓글 조회 - isEmpty")
+    void findByIdAndPostId_isEmpty() {
+        Optional<Comment> result = commentRepository.findByIdAndPostId(1L, 99L);
+        assertThat(result.isEmpty()).isTrue();
+    }
+
+    @Test
     @DisplayName("create - 댓글 생성")
     void create() {
         Comment comment = new Comment("Post 1, Comment 06", 1L, null, null);
